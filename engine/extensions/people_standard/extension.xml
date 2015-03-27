@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<cms-extension version="1.0">
+	<title>People</title>
+	<object_name>people_standard</object_name>
+	<version>1.0.0</version>
+	<cms_version_minimum>2.0</cms_version_minimum>
+	<cms_version_maximum/>
+	<object_file>people_standard</object_file>
+	<author>William Strucke</author>
+	<email>wstrucke@gmail.com</email>
+	<url>http://home2.arts.ohio-state.edu/~strucke1</url>
+	<description/>
+	<requires>
+		<db version_minimum="1.1"/>
+	</requires>
+	<provides>people</provides>
+	<type>standard</type>
+	<allow_export>false</allow_export>
+	<arguments/>
+	<gears>false</gears>
+	<!-- fuses are automatically added to the menu system at run time and do not appear in the navigation table -->
+	<fuse enabled="false"/>
+	<filament enabled="true">
+		<control_panel title="People Control Panel"/>
+	</filament>
+</cms-extension>

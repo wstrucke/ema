@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<cms-extension version="1.0">
+	<title>Cache Module</title>
+	<object_name>cache_basic</object_name>
+	<version>1.0.0</version>
+	<cms_version_minimum>2.0</cms_version_minimum>
+	<cms_version_maximum/>
+	<object_file>cache_basic</object_file>
+	<author>William Strucke</author>
+	<email>wstrucke@gmail.com</email>
+	<url>http://home2.arts.ohio-state.edu/~strucke1</url>
+	<description/>
+	<requires>
+		<db/>
+		<file/>
+		<cms/>
+		<template/>
+	</requires>
+	<provides>cache</provides>
+	<type>basic</type>
+	<allow_export>false</allow_export>
+	<arguments/>
+	<gears>true</gears>
+	<schema version="0.1.3">
+		
+		<!-- cache_content stores the meta information and mapping on unique requests to the cached content -->
+		<cache_content>
+			
+			<!-- the hash of the unique request -->
+			<request type="string" primary="true" notnull="true" length="32" />
+			
+			<!-- when was this generated in unix time? -->
+			<time type="string" notnull="true" length="10" />
+			
+			<!-- how many times has this been verified? how many times have we recompiled this request and found the same result? -->
+			<count type="integer" notnull="true" unsigned="true">0</count>
+			
+			<!-- is the cache for this request approved for use? -->
+			<approved type="bool" notnull="true">true</approved>
+			
+			<!-- last time this content was verified in unixtime -->
+			<last_verify type="string" notnull="true" length="10" />
+			
+			<!-- compile time in ms - how long did it take to build the output? -->
+			<duration type="integer" notnull="true" />
+			
+			<!-- how many times has this cache item been used or returned successfully? -->
+			<returned type="integer" notnull="true" unsigned="true">0</returned>
+			
+			<!-- last compile time using cache -->
+			<cache_duration type="integer" />
+			
+			<!-- the maximum age of the request in seconds (defined by the lowest max age of the components), null for default -->
+			<max_age type="integer" unsigned="true" />
+			
+			<!-- authenticated flag -->
+			<authenticated type="bool" notnull="true" />
+			
+			<!-- user id for an authenticated user -->
+			<uid type="string" length="128" />
+			
+			<!-- request page id -->
+			<pageid type="string" length="128" notnull="true" />
+			
+			<!-- request uri -->
+			<uri type="string" length="512" notnull="true" />
+			
+			<!-- request args -->
+			<uri_args type="string" length="512" />
+			
+		</cache_content>
+		
+		<!-- cache_content_map provides a intermediate layer between the request and the cached output. this allows for the page to be
+		     split up into pieces or 'blocks' with dynamic content mixed in with the static content based on different refresh patterns/rules -->
+		<cache_content_map>
+			
+			<!-- arbitrary id -->
+			<id type="integer" primary="true" notnull="true" unsigned="true" autoinc="true" />
+			
+			<!-- request hash -->
+			<request_id type="string" length="32" notnull="true" />
+			
+			<!-- a hash of the output : reference to cache_output:id where the actual data is stored -->
+			<cache_output_id type="string" length="32" notnull="true" />
+			
+			<!-- when was this added or updated -->
+			<time type="string" notnull="true" length="10" />
+			
+			<!-- the display order to concatenate multiple pieces of the output. it would be nonsensical for two elements of the same request
+			     to have the same assembly order number -->
+			<assembly_order type="integer" unsigned="true" notnull="true" />
+			
+			<!-- optional method id for function references -->
+			<cache_method_id type="integer" unsigned="true" />
+			
+		</cache_content_map>
+		
+		<!-- cache_method stores references to every embedded function in a page's output to allow for accurate cache expiration -->
+		<cache_method>
+			
+			<!-- arbitrary id -->
+			<id type="integer" primary="true" notnull="true" unsigned="true" autoinc="true" />
+			
+			<!-- request hash -->
+			<request_id type="string" notnull="true" length="32" />
+			
+			<!-- ema encoded function call (the 'match' from cms::parse_shared_methods) -->
+			<call type="string" notnull="true" length="1024" />
+			
+			<!-- name of the object -->
+			<extension type="string" notnull="true" length="128" />
+			
+			<!-- the name of the method -->
+			<method type="string" notnull="true" length="256" />
+			
+			<!-- a hash of the output : reference to cache_output:id where the actual data is stored -->
+			<cache_output_id type="string" length="32" notnull="true" />
+			
+			<!-- update/refresh interval for this method in seconds, should be provided by the implementing extension -->
+			<update_interval type="integer" notnull="true">0</update_interval>
+			
+		</cache_method>
+		
+		<!-- cache_output stores the actual cached output -->
+		<cache_output>
+			
+			<!-- a hash of the output is used as the id -->
+			<id type="string" length="32" notnull="true" primary="true" />
+			
+			<!-- the actual output content -->
+			<output type="blob" notnull="true" length="16777215" />
+			
+		</cache_output>
+		
+	</schema>
+	<data/>
+</cms-extension>

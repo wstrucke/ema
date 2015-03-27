@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<db_alter>
+	<news_basic:0 next="0.0.1">
+		<insert>
+			<files_index>
+				<file>
+					<unique_id>1291844899_close.png</unique_id>
+					<type>server</type>
+					<name>1291844899_close.png</name>
+					<server_path>images/</server_path>
+					<object>news_basic</object>
+					<shared type="bool">true</shared>
+					<mime>image/png</mime>
+				</file>
+			</files_index>
+		</insert>
+	</news_basic:0>
+</db_alter>

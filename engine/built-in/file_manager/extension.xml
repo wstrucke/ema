@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<cms-extension version="1.0">
+	<title>File Manager</title>
+	<object_name>file_manager</object_name>
+	<version>1.0.2</version>
+	<cms_version_minimum>2.0</cms_version_minimum>
+	<cms_version_maximum/>
+	<object_file>file_manager</object_file>
+	<author>William Strucke</author>
+	<email>wstrucke@gmail.com</email>
+	<url>http://home2.arts.ohio-state.edu/~strucke1</url>
+	<description/>
+	<requires>
+		<db version_minimum="1.1"/>
+	</requires>
+	<provides>file</provides>
+	<type>manager</type>
+	<allow_export>true</allow_export>
+	<arguments>
+		<db type="object" model="db">true</db>
+		<download_request_code type="string">false</download_request_code>
+		<upload_root type="string">true</upload_root>
+	</arguments>
+	<gears>false</gears>
+	<schema version="0.2.5">
+	
+		<files>
+			<unique_id type="string" length="254" primary="true" unique="true"></unique_id>
+			<data type="blob" length="268435456" notnull="true"></data>
+			<modified type="timestamp" notnull="true"></modified>
+		</files>
+		
+		<files_index>
+			<id type="integer" primary="true" unsigned="true" autoinc="true"></id>
+			
+			<unique_id type="string" length="254" unique="true"></unique_id>
+			
+			<type type="string" length="8" notnull="true">server</type>
+			<!-- type represents how the file is retrieved by the 
+						file manager extension, e.g. 'server' means it is stored
+						in the server file system, 'database' means it is stored
+						in the extention's database table, etc...
+						type "sscript" indicates is a script on the server
+						 -->
+			
+			<name type="string" length="254" notnull="true"></name>
+			<!-- name is the real file name -->
+			
+			<description type="string" length="254"></description>
+			
+			<uploaded type="bool" notnull="true">false</uploaded>
+			<!-- uploaded is a boolean value indiciating whether or not
+			      the file was bundled with an extension or uploaded by
+			      the client -->
+			
+			<path type="string" length="254"></path>
+			<!-- path is the virtual folder location for the file 
+						(from the url). files in the same path use the same
+						namespace and thus must have unique file names (name field) -->
+			
+			<server_path type="string" length="254"></server_path>
+			<!-- server_path is the relative path to the file from the engine provided 
+						data store location. -->
+			
+			<size type="string" length="10">0</size>
+			<!-- size is the size in bytes of the stored data -->
+			
+			<object type="string" length="254"></object>
+			<!-- object is the name of the object that uploaded the file 
+						by default it will be the only client able to retrieve the file-->
+			
+			<shared type="bool">false</shared>
+			<!-- shared determines whether or not third party extensions
+						can request the file -->
+			
+			<ssl_required type="bool">false</ssl_required>
+			
+			<updated type="datetime"></updated>
+			
+			<mime type="string" length="100">application/force-download</mime>
+			<!-- the mime type of the file -->
+			
+		</files_index>
+		
+		<!-- the file_alias tables allows for multiple aliases for any given file -->
+		<file_alias>
+			
+			<id type="integer" primary="true" unsigned="true" autoinc="true"></id>
+			
+			<file_id type="integer" unsigned="true" notnull="true" />
+			<!-- the real file id number -->
+			
+			<alias type="string" length="255" notnull="true" unique="true" />
+			<!-- the alias -->
+			
+		</file_alias>
+		
+	</schema>
+	<query>
+		<all_files>
+			<select>id,unique_id,type,description,mime</select>
+			<from>fm_index</from>
+			<where>
+				<shared type="bool">true</shared>
+			</where>
+		</all_files>
+		<file_data>
+			<select>id,unique_id,type,name,description,object,shared,mime</select>
+			<from>fm_index</from>
+			<where>
+				<id type="integer">#ID#</id>
+			</where>
+		</file_data>
+		<newid>
+			<select><max>id</max></select>
+			<from>fm_index</from>
+		</newid>
+	</query>
+	<data>
+		<files_index>
+			<file>
+				<unique_id>file_manager.js</unique_id>
+				<type>sscript</type>
+				<name>file_manager.js</name>
+				<description>file manager javascript</description>
+				<server_path>javascript/</server_path>
+				<object>file_manager</object>
+				<shared type="bool">true</shared>
+				<mime>text/javascript</mime>
+			</file>
+		</files_index>
+	</data>
+</cms-extension>

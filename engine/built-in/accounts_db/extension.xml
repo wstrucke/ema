@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<cms-extension version="1.0">
+	<title>Accounts-DB (Authentication)</title>
+	<object_name>accounts_db</object_name>
+	<version>1.0.0</version>
+	<cms_version_minimum>2.0</cms_version_minimum>
+	<cms_version_maximum/>
+	<object_file>accounts_db</object_file>
+	<author>William Strucke</author>
+	<email>wstrucke@gmail.com</email>
+	<url>http://home2.arts.ohio-state.edu/~strucke1</url>
+	<description/>
+	<requires>
+		<db version_minimum="1.1"/>
+		<file/>
+	</requires>
+	<provides>accounts</provides>
+	<type>db</type>
+	<allow_export>false</allow_export>
+	<arguments/>
+	<filament/>
+	
+	<schema version="0.1.2">
+		
+		<accounts_group charset="latin1">
+			<gid_number type="integer" unsigned="true" primary="true" autoinc="true" />
+			<gid type="string" length="60" notnull="true" unique="true" />
+			<unique_id type="string" length="55" notnull="true" />
+			<display_name type="string" length="320" />
+			<description type="string" length="512" />
+			<enabled type="bool" notnull="true">true</enabled>
+			<system type="bool" notnull="true">false</system>
+		</accounts_group>
+		
+		<accounts_map charset="latin1">
+			<group_guid type="string" length="55" primary="true" />
+			<member_guid type="string" length="55" primary="true" />
+			<member_is_group type="bool" notnull="true">false</member_is_group>
+			<locked type="bool" notnull="true">false</locked>
+		</accounts_map>
+		
+		<accounts_guid charset="latin1">
+			<guid type="string" length="55" primary="true" />
+			<!-- unique_id field from one of the other tables -->
+			<type type="string" length="5" notnull="true" />
+			<!-- type is one of [ user | group ] -->
+		</accounts_guid>
+		
+		<accounts_user charset="latin1">
+			<uid_number type="integer" unsigned="true" primary="true" autoinc="true" />
+			<uid type="string" length="60" notnull="true" unique="true" />
+			<unique_id type="string" length="55" notnull="true" />
+			<password type="string" length="254" />
+			<pw_last_set type="datetime" />
+			<first type="string" length="128" />
+			<middle type="string" length="64" />
+			<last type="string" length="128" />
+			<display_name type="string" length="320" />
+			<email type="string" length="254" />
+			<phone type="string" length="24" />
+			<mobile type="string" length="24" />
+			<pager type="string" length="24" />
+			<web_url type="string" length="254" />
+			<description type="string" length="512" />
+			<office type="string" length="64" />
+			<address type="string" length="64" />
+			<city type="string" length="64" />
+			<state type="string" length="2" />
+			<zip type="string" length="10" />
+			<country type="string" length="64" />
+			<enabled type="bool" notnull="true">true</enabled>
+		</accounts_user>
+	
+	</schema>
+	
+	<data>
+		
+		<accounts_group>
+			<record>
+				<gid>administrators</gid>
+				<unique_id>61123ca4-f075-11df-bff3-aa46601030c1</unique_id>
+				<display_name>Site Administrators</display_name>
+				<description>Built-in Administrators Group</description>
+				<system type="bool">true</system>
+			</record>
+		</accounts_group>
+		
+		<accounts_user>
+			<record>
+				<uid>admin</uid>
+				<password>281632349e2ce297eb89977acd65ffd1</password>
+				<display_name>Administrator</display_name>
+				<description>Built-in administrator account</description>
+				<unique_id>c8cec89e-747d-11e0-8767-8576c061a515</unique_id>
+			</record>
+		</accounts_user>
+		
+		<accounts_guid>
+			<record><guid>61123ca4-f075-11df-bff3-aa46601030c1</guid><type>group</type></record>
+			<record><guid>c8cec89e-747d-11e0-8767-8576c061a515</guid><type>user</type></record>
+		</accounts_guid>
+		
+		<accounts_map>
+			<record>
+				<group_guid>61123ca4-f075-11df-bff3-aa46601030c1</group_guid>
+				<member_guid>c8cec89e-747d-11e0-8767-8576c061a515</member_guid>
+				<locked type="bool">true</locked>
+			</record>
+		</accounts_map>
+		
+		<files_index>
+			<file>
+				<unique_id>accounts_db.js</unique_id>
+				<type>sscript</type>
+				<name>accounts_db.js</name>
+				<description>accounts db javascript</description>
+				<server_path>javascript/</server_path>
+				<object>accounts_db</object>
+				<shared type="bool">true</shared>
+				<mime>text/javascript</mime>
+			</file>
+		</files_index>
+		
+	</data>
+	
+</cms-extension>

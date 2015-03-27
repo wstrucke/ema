@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<cms-extension version="1.0">
+	<title>MySQL Connector</title>
+	<object_name>db_mysql</object_name>
+	<version>1.4.5</version>
+	<cms_version_minimum>2.0</cms_version_minimum>
+	<cms_version_maximum/>
+	<object_file>db_mysql</object_file>
+	<author>William Strucke</author>
+	<email>wstrucke@gmail.com</email>
+	<url>http://home2.arts.ohio-state.edu/~strucke1</url>
+	<description/>
+	<requires>
+		<xml_object/>
+	</requires>
+	<provides>db</provides>
+	<type>mysql</type>
+	<interactive>false</interactive>
+	<allow_embed>false</allow_embed>
+	<allow_export>false</allow_export>
+	<arguments>
+		<server type="string">true</server>
+		<database type="string">true</database>
+		<user type="string">true</user>
+		<password type="string">true</password>
+		<charset type="string">false</charset>
+		<engine type="string">false</engine>
+	</arguments>
+	<gears/>
+</cms-extension>

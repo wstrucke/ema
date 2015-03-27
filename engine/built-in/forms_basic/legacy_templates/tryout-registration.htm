@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Web Tryout Registration Data</title>
+<style type="text/css">
+
+	* { margin: 0px; padding: 0px; }
+	body { font-family: Geneva, Arial, Helvetica, sans-serif; font-size: 14px; }
+	ul { list-style: none; margin: 0px 30px 20px 0px; float: left; min-width: 325px; }
+	hr { border: none; clear: both; color: #ffffff; margin: 0px; }
+	
+	div#page {
+		/* Restrict Data to fit on 8.5" x 11" letter */
+		width: 700px;
+		padding: 15px 8px;
+		margin: 5px;
+		border: 2px solid #cccccc;
+		}
+	
+	div#page img { margin: -5px 0px 20px; }
+	
+	li { margin-left: 10px; line-height: 2em; }
+	li.subject { font-weight: bold; margin-left: 0px; border-bottom: 1px solid #cccccc; margin-bottom: 10px; }
+	
+	ul.formatted { padding-left: 110px; }
+	ul.formatted li.subject { margin-left: -110px; }
+	ul.formatted li div { width: 105px; font-weight: bold; text-align: right; float: left; margin-left: -60px; }
+
+</style>
+</head>
+<body>
+<div id="page">
+	<!-- Begin Header Image -->
+	
+	<img src="http://tbdbitl.osu.edu/images/web_tryout_submission.jpg" width="700" height="70" alt="OSUMB Web Tryout Registration" />
+	
+	<!-- End Header Image -->
+	
+	<!-- Begin Form Results -->
+	
+	<ul class="formatted">
+		<li class="subject">General Information</li>
+		<li><div>Name:</div>#first# #middle# #last#</li>
+		<li><div>SSN:</div>#ssn#</li>
+		<li><div>Address:</div>#street#</li>
+		<li><div>&nbsp;</div>#city#, #state# #zip#</li>
+		<li><div>Phone:</div>#telephone#</li>
+		<li><div>E-mail:</div>#email#</li>
+		<li><div>Graduated HS:</div>#hs#</li>
+	</ul>
+	
+	<ul>
+		<li class="subject">Tryout Information</li>
+		<li>Instrument: #instrument#</li>
+		<li>#tryout_week# attend tryout week.</li>
+		<li>#housing# housing information.</li>
+		<li>#music# tryout week info and school songs.</li>
+		<li>#schedule# a summer sessions schedule.</li>
+		<li>#loan# to borrow an instrument.</li>
+		<li>#video# a fundamentals video.</li>
+		<li>Musical Experience: #musical_experience#</li>
+	</ul>
+	
+	<ul>
+		<li class="subject">Tracking Information</li>
+		<li>TIME_STAMP: #time#</li>
+		<li>REMOTE_IP: #ip#</li>
+		<li>REMOTE_HOST: #host#</li>
+		<li>HTTP_USER_AGENT: #agent#</li>
+	</ul>
+	
+	<!-- End Form Results -->
+	
+	<hr />
+
+</div>
+</body>
+</html>

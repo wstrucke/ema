@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<cms-extension version="1.0">
+	<title>Template Manager</title>
+	<object_name>template_manager</object_name>
+	<version>1.0.0</version>
+	<cms_version_minimum>2.0</cms_version_minimum>
+	<cms_version_maximum/>
+	<object_file>template_manager</object_file>
+	<author>William Strucke</author>
+	<email>wstrucke@gmail.com</email>
+	<url>http://home2.arts.ohio-state.edu/~strucke1</url>
+	<description/>
+	<requires>
+		<db version_minimum="1.1"/>
+		<css_document/>
+		<html_element/>
+		<xml_document/>
+		<file_manager/>
+	</requires>
+	<provides>template</provides>
+	<type>manager</type>
+	<allow_export>false</allow_export>
+	<arguments>
+		<html type="object" model="xml_document">true</html>
+	</arguments>
+	<gears/>
+	
+	<schema version="0.5.4">
+	
+		<templates>
+			<template_id type="string" length="4" primary="true" unique="true"></template_id>
+			<!-- the template id. this field should be renamed to "id" eventually -->
+			<parent_id type="string" length="4"></parent_id>
+			<!-- the id of the child template's parent (in this table). if this template has
+			     no parent, this should be 'null' -->
+			<name type="string" length="254" notnull="true" unique="true"></name>
+			<!-- the template name.  we are enforcing uniqueness (for now) since the name
+			     is all that is presented to the end user -->
+			<description type="string" length="1024"></description>
+			<!-- a description of the template -->
+			<enabled type="bool" notnull="true">false</enabled>
+			<!-- indicates whether or not this template is enabled. a disabled template
+			     does not appear in the CMS and can not be loaded for use. if an element
+			     has this template selected it will not be used. -->
+		</templates>
+		
+		<template_elements>
+			<element_id type="integer" unsigned="true" primary="true" unique="true" autoinc="true"></element_id>
+			<!-- the element id. this field should be renamed to "id" eventually -->
+			<scope type="integer" notnull="true">-1</scope>
+			<!-- ?? -->
+			<order type="integer" notnull="true">0</order>
+			<!-- the preferred load order for this element (is this necessary here??) -->
+			<name type="string" length="254" notnull="true"></name>
+			<!-- a name for this element -->
+			<css_id type="integer" unsigned="true"></css_id>
+			<!-- ?? -->
+			<size type="integer" unsigned="true" notnull="true">0</size>
+			<!-- ?? -->
+			<width type="integer" unsigned="true" notnull="true">0</width>
+			<!-- a recommended width for this element -->
+			<height type="integer" unsigned="true" notnull="true">0</height>
+			<!-- a recommended height for this element -->
+			<ingredients type="clob" length="65535"></ingredients>
+			<!-- this is the "data" or contents of the element -->
+		</template_elements>
+		
+		<template_option>
+			<template_id type="string" length="4" primary="true" />
+			<!-- option is a unique name provided by a module -->
+			<option type="string" length="255" primary="true" />
+			<!-- value is a php encoded representation of the value passed for the option -->
+			<value type="string" length="255" notnull="true" />
+		</template_option>
+		
+		<map_template_elements>
+			<element_id type="integer" unsigned="true" primary="true" notnull="true"></element_id>
+			<!-- the element id. this field should be renamed to "template_elements_id" eventually -->
+			<template_id type="string" length="4" primary="true" notnull="true"></template_id>
+			<!-- the template id -->
+			<order type="integer" notnull="true">0</order>
+			<!-- the preferred load order for elements attached to a template -->
+		</map_template_elements>
+		
+		<template_resource>
+			<!-- this table will replace template_css, template_javascript, and template_meta -->
+			<id type="integer" unsigned="true" primary="true" unique="true" autoinc="true"></id>
+			<!-- a unique resource id -->
+			<name type="string" length="254" notnull="true"></name>
+			<!-- a common name to refer to the resource for the end user -->
+			<type type="string" length="10" notnull="true"></type>
+			<!-- the type of resource. current valid values are:
+			     css, javascript, meta -->
+			<description type="string" length="1024"></description>
+			<!-- an optional description, again for the benefit of the end user -->
+			<url type="string" length="254"></url>
+			<!-- an optional URL for css/javascript resources -->
+			<file_id type="string" length="254"></file_id>
+			<!-- an optional file_manager id for css/javascript resources -->
+			<contents type="string" length="254"></contents>
+			<!-- the string contents (for meta tags only) -->
+		</template_resource>
+		
+		<map_template_resource>
+			<template_resource_id type="integer" unsigned="true" primary="true" notnull="true"></template_resource_id>
+			<template_id type="string" length="4" primary="true" notnull="true"></template_id>
+			<order type="integer" notnull="true">0</order>
+		</map_template_resource>
+		
+	</schema>
+	
+	<data>
+	
+		<templates>
+			<record>
+				<template_id>0</template_id>
+				<name>Admin Interface</name>
+				<description>Administrator Configuration Interface for the Content Management System</description>
+				<enabled type="bool">true</enabled>
+			</record>
+			<record>
+				<template_id>1</template_id>
+				<name>Silent Output</name>
+				<description>Template used for interactive methods and modules that need 100% of the output to the browser</description>
+				<enabled type="bool">true</enabled>
+			</record>
+			<record>
+				<template_id>2</template_id>
+				<name>TBDBITL v3</name>
+				<description>TBDBITL web site, third redesign</description>
+				<enabled type="bool">true</enabled>
+			</record>
+		</templates>
+		
+		<template_resource>
+			<record>
+				<id type="integer">1</id>
+				<name>ema_admin</name>
+				<type>css</type>
+				<description>ema administrator/configuration interface css</description>
+				<file_id>setup.css</file_id>
+			</record>
+			<record>
+				<id type="integer">2</id>
+				<name>tbdbitl_v3_screen</name>
+				<type>css</type>
+				<description>tbdbitl, third redesign style sheet</description>
+				<file_id>version3.css</file_id>
+			</record>
+			<record>
+				<id type="integer">3</id>
+				<name>osu-navbar</name>
+				<type>css</type>
+				<description>ohio state univ. nav bar</description>
+				<url>https://v-web-3.arts.ohio-state.edu/osu-navbar-media/css/navbar.css</url>
+				<file_id/>
+			</record>
+			<record>
+				<id type="integer">4</id>
+				<name>mootools-1.2.1-core-yc</name>
+				<type>javascript</type>
+				<file_id>mootools-1.2.1-core-yc.js</file_id>
+			</record>
+			<record>
+				<id type="integer">5</id>
+				<name>mootools-1.2-more</name>
+				<type>javascript</type>
+				<file_id>mootools-1.2-more.js</file_id>
+			</record>
+			<record>
+				<id type="integer">6</id>
+				<name>ema javascript</name>
+				<type>javascript</type>
+				<file_id>ema.js</file_id>
+			</record>
+			<record>
+				<id type="integer">7</id>
+				<name>headlines</name>
+				<type>javascript</type>
+				<file_id>headlines.js</file_id>
+			</record>
+			<record>
+				<id type="integer">8</id>
+				<name>searchform</name>
+				<type>javascript</type>
+				<url>https://v-web-3.arts.ohio-state.edu/osu-navbar-media/js/searchform.js</url>
+			</record>
+		</template_resource>
+		
+		<map_template_resource>
+			<record>
+				<template_resource_id type="integer">1</template_resource_id>
+				<template_id>0</template_id>
+			</record>
+			<record>
+				<template_resource_id type="integer">2</template_resource_id>
+				<template_id>2</template_id>
+				<order type="integer">1</order>
+			</record>
+			<record>
+				<template_resource_id type="integer">3</template_resource_id>
+				<template_id>2</template_id>
+				<order type="integer">0</order>
+			</record>
+			<record>
+				<template_resource_id type="integer">4</template_resource_id>
+				<template_id>0</template_id>
+				<order type="integer">1</order>
+			</record>
+			<record>
+				<template_resource_id type="integer">5</template_resource_id>
+				<template_id>0</template_id>
+				<order type="integer">2</order>
+			</record>
+			<record>
+				<template_resource_id type="integer">6</template_resource_id>
+				<template_id>0</template_id>
+				<order type="integer">3</order>
+			</record>
+			<record>
+				<template_resource_id type="integer">7</template_resource_id>
+				<template_id>2</template_id>
+				<order type="integer">1</order>
+			</record>
+			<record>
+				<template_resource_id type="integer">8</template_resource_id>
+				<template_id>2</template_id>
+			</record>
+		</map_template_resource>
+		
+		<template_elements>
+			<record>
+				<element_id type="integer">1</element_id>
+				<name>ema boilerplate template</name>
+				<ingredients type="html">
+					##_cms::generate_menu_##
+					<div id="page">
+					
+						<div id="header">
+							<span>elegant, modular applications</span>
+							<h2>control panel</h2>
+							<div>
+								<p>#__date__#</p>
+								<p>##_security::ll(admin)_##</p>
+							</div>
+						</div>
+						
+						<%1></%1>
+						
+						<div id="footer">
+							<hr noshade="noshade" />
+							<p>
+								<em>Powered by <a href="http://home-2.arts.ohio-state.edu/~strucke1/">ema</a> version #__engine_version__#.</em>
+							</p>
+						</div>
+						
+					</div>
+				</ingredients>
+			</record>
+			<record>
+				<element_id type="integer">2</element_id>
+				<name>TBDBITL Dev Version 0012</name>
+				<ingredients type="html">
+<div id="container">
+	
+	<div id="header">
+		
+		<ul id="nav_bar">
+			<li class="active"><a href="#">Home</a></li>
+			<li><a href="#">Prospective Members</a></li>
+			<li><a href="#">Marching Band</a></li>
+			<li><a href="#">Athletic Band</a></li>
+			<li><a href="#">Staff</a></li>
+			<li><a href="#">Links</a></li>
+		</ul>
+			
+		<div id="login"><a href="https://v-web-3.arts.ohio-state.edu/">Student/Staff Login</a></div>
+	
+	</div>
+
+	<div id="page">
+	
+		<ul id="section_navigation">
+			<li class="active"><a href="#">Home</a></li>
+			<li><a href="#">Merchandise</a></li>
+			<li><a href="#">Community Outreach</a></li>
+			<li><a href="#">Development</a></li>
+			<li><a href="#">Audio/Video Downloads</a></li>
+			<li><a href="#">Contact Information</a></li>
+		</ul>	
+		
+		<%1></%1>
+		
+	</div>
+	
+	<div id="footer">
+		<img src="download/osuab_crest_small.png" class="left" width="70" height="70" alt="OSUAB Crest" />
+		<img src="download/osumb_crest_small.png" class="right" width="70" height="70" alt="OSUMB Crest" />
+		<p>&copy; 2004-2007, <a href="http://www.osu.edu">The Ohio State University</a> Marching Band.</p>
+		<p>TBDBITL&reg; is a Registered Trademark of the <a href="http://www.tbdbitl.org">TBDBITL Alumni Association</a>. All Rights Reserved.</p>
+		<p>1866 College Road, 110 Weigel Hall | Columbus, OH 43210 | 614-292-2598</p>
+		<blockquote>"Pick up your feet, turn your corners square, and DRIVE, DRIVE, DRIVE"</blockquote>
+	</div>
+
+</div>
+				</ingredients>
+			</record>
+			<record>
+				<element_id type="integer">3</element_id>
+				<name>OSU Navbar</name>
+				<ingredients type="html">
+<div id="osu-Navbar">
+	<p>
+		<a href="#page-content" id="skip" class="osu-semantic">skip to main content</a>
+	</p>
+	<h2 class="osu-semantic">OSU Navigation Bar</h2>
+	<div id="osu-NavbarBreadcrumb">
+		<p id="osu">
+			<a title="The Ohio State University homepage" href="http://www.osu.edu/">The Ohio State University</a>
+		</p>
+		<p id="site-name">
+		   #__site_name__#
+		</p>
+	</div>
+	<div id="osu-NavbarLinks">
+		<ul>
+			<li><a href="http://www.osu.edu/help.php" title="OSU Help">Help</a></li>
+			<li><a href="http://buckeyelink.osu.edu/" title="Buckeye Link">Buckeye Link</a></li>
+			<li><a href="http://www.osu.edu/map/" title="Campus map">Map</a></li>
+			<li><a href="http://www.osu.edu/findpeople.php" title="Find people at OSU">Find People</a></li>
+			<li><a href="https://webmail.osu.edu" title="OSU Webmail">Webmail</a></li>
+			<li id="searchbox">
+				<form action="http://google.service.ohio-state.edu/search" method="get" >
+					<input value="date:D:L:d1" name="sort" type="hidden" />
+					<input value="xml_no_dtd" name="output" type="hidden" />
+					<input value="UTF-8" name="ie" type="hidden" />
+					<input value="UTF-8" name="oe" type="hidden" />
+					<input value="default_frontend" name="client" type="hidden" />
+					<input value="default_frontend" name="proxystylesheet" type="hidden" />
+					<input value="default_collection" name="site" type="hidden" />
+					<input type="hidden" name="as_dt" value="i" />
+					<fieldset>
+						<legend>
+							<span class="osu-semantic">Search</span>
+						</legend>
+						<label for="search-field" class="overlabel">Search Ohio State</label>
+						<input id="search-field" class="textfield" type="text" name="q" value="" />
+						<button type="submit" name="go">Go</button>
+					</fieldset>
+				</form>
+		  </li>       
+		</ul>
+	</div>
+</div>
+				</ingredients>
+			</record>
+		</template_elements>
+		
+		<map_template_elements>
+			<record>
+				<element_id type="integer">1</element_id>
+				<template_id>0</template_id>
+			</record>
+			<record>
+				<element_id type="integer">2</element_id>
+				<template_id>2</template_id>
+				<order type="integer">1</order>
+			</record>
+			<record>
+				<element_id type="integer">3</element_id>
+				<template_id>2</template_id>
+				<order type="integer">0</order>
+			</record>
+		</map_template_elements>
+		
+		<files_index>
+			<file>
+				<unique_id>mootools-1.2-more.js</unique_id>
+				<type>server</type>
+				<name>mootools-1.2-more.js</name>
+				<server_path>javascript/</server_path>
+				<object>template_manager</object>
+				<shared type="bool">true</shared>
+				<mime>text/javascript</mime>
+			</file>
+			<file>
+				<unique_id>mootools-1.2.1-core-yc.js</unique_id>
+				<type>server</type>
+				<name>mootools-1.2.1-core-yc.js</name>
+				<server_path>javascript/</server_path>
+				<object>template_manager</object>
+				<shared type="bool">true</shared>
+				<mime>text/javascript</mime>
+			</file>
+			<file>
+				<unique_id>version3.css</unique_id>
+				<type>sscript</type>
+				<name>version3.css</name>
+				<server_path>css/</server_path>
+				<object>template_manager</object>
+				<shared type="bool">true</shared>
+				<mime>text/css</mime>
+			</file>
+			<file>
+				<unique_id>headlines.js</unique_id>
+				<type>server</type>
+				<name>headlines.js</name>
+				<server_path>javascript/</server_path>
+				<object>template_manager</object>
+				<shared type="bool">true</shared>
+				<mime>text/javascript</mime>
+			</file>
+			<file>
+				<unique_id>template_manager.js</unique_id>
+				<type>sscript</type>
+				<name>template_manager.js</name>
+				<description>template manager javascript</description>
+				<server_path>javascript/</server_path>
+				<object>template_manager</object>
+				<shared type="bool">true</shared>
+				<mime>text/javascript</mime>
+			</file>
+			<file>
+				<unique_id>mootools-1.3-core.js</unique_id>
+				<type>server</type>
+				<name>mootools-1.3-core.js</name>
+				<server_path>javascript/</server_path>
+				<object>template_manager</object>
+				<shared type="bool">true</shared>
+				<mime>text/javascript</mime>
+			</file>
+			<file>
+				<unique_id>mootools-1.3-more.js</unique_id>
+				<type>server</type>
+				<name>mootools-1.3-more.js</name>
+				<server_path>javascript/</server_path>
+				<object>template_manager</object>
+				<shared type="bool">true</shared>
+				<mime>text/javascript</mime>
+			</file>
+		</files_index>
+		
+	</data>
+</cms-extension>

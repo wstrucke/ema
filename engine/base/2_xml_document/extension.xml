@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<cms-extension version="1.0">
+	<title>XML Document</title>
+	<object_name>xml_document</object_name>
+	<version>1.0.2</version>
+	<cms_version_minimum>2.0</cms_version_minimum>
+	<cms_version_maximum/>
+	<object_file>xml_document</object_file>
+	<author>William Strucke</author>
+	<email>wstrucke@gmail.com</email>
+	<url>http://home2.arts.ohio-state.edu/~strucke1</url>
+	<description/>
+	<requires>
+		<xml_object/>
+	</requires>
+	<provides>xml</provides>
+	<type>document</type>
+	<interactive>false</interactive>
+	<allow_embed>false</allow_embed>
+	<allow_export>false</allow_export>
+	<arguments>
+		<_tag type="string">false</_tag>
+		<_value type="string">false</_value>
+	</arguments>
+</cms-extension>

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<db_alter>
+
+	<calendar_v2:0.1.0 next="0.1.1">
+		<insert>
+			<files_index>
+				<file>
+					<unique_id>calendar_popup.js</unique_id>
+					<type>server</type>
+					<name>calendar_popup.js</name>
+					<server_path>javascript/</server_path>
+					<object>calendar_v2</object>
+					<shared type="bool">true</shared>
+					<mime>text/javascript</mime>
+				</file>
+			</files_index>
+		</insert>
+	</calendar_v2:0.1.0>
+	
+	<calendar_v2:0.1.1 next="0.1.2">
+		<delete><files_index><id>61</id></files_index></delete>
+		<insert>
+			<files_index>
+				<file>
+					<unique_id>calendar.compat.js</unique_id>
+					<type>server</type>
+					<name>calendar.compat.js</name>
+					<server_path>javascript/</server_path>
+					<object>calendar_v2</object>
+					<shared type="bool">true</shared>
+					<mime>text/javascript</mime>
+				</file>
+			</files_index>
+		</insert>
+	</calendar_v2:0.1.1>
+	
+	<calendar_v2:0.1.2 next="0.1.3">
+		<insert>
+			<files_index>
+				<file>
+					<unique_id>calendar-icon.gif</unique_id>
+					<type>server</type>
+					<name>calendar-icon.gif</name>
+					<server_path>images/</server_path>
+					<object>calendar_v2</object>
+					<shared type="bool">true</shared>
+					<mime>image/gif</mime>
+				</file>
+			</files_index>
+		</insert>
+	</calendar_v2:0.1.2>
+	
+	<calendar_v2:0.1.3 next="0.1.4">
+		<insert>
+			<files_index>
+				<file>
+					<unique_id>calendar.png</unique_id>
+					<type>server</type>
+					<name>calendar.png</name>
+					<server_path>images/</server_path>
+					<object>calendar_v2</object>
+					<shared type="bool">true</shared>
+					<mime>image/png</mime>
+				</file>
+			</files_index>
+		</insert>
+	</calendar_v2:0.1.3>
+	
+	<calendar_v2:0.1.4 next="0.1.5">
+		<insert>
+			<files_index>
+				<file>
+					<unique_id>calendar-hilite.gif</unique_id>
+					<type>server</type>
+					<name>calendar-hilite.gif</name>
+					<server_path>images/</server_path>
+					<object>calendar_v2</object>
+					<shared type="bool">true</shared>
+					<mime>image/gif</mime>
+				</file>
+				<file>
+					<unique_id>calendar-next.gif</unique_id>
+					<type>server</type>
+					<name>calendar-next.gif</name>
+					<server_path>images/</server_path>
+					<object>calendar_v2</object>
+					<shared type="bool">true</shared>
+					<mime>image/gif</mime>
+				</file>
+				<file>
+					<unique_id>calendar-prev.gif</unique_id>
+					<type>server</type>
+					<name>calendar-prev.gif</name>
+					<server_path>images/</server_path>
+					<object>calendar_v2</object>
+					<shared type="bool">true</shared>
+					<mime>image/gif</mime>
+				</file>
+				<file>
+					<unique_id>calendar-td.gif</unique_id>
+					<type>server</type>
+					<name>calendar-td.gif</name>
+					<server_path>images/</server_path>
+					<object>calendar_v2</object>
+					<shared type="bool">true</shared>
+					<mime>image/gif</mime>
+				</file>
+				<file>
+					<unique_id>calendar-valid.gif</unique_id>
+					<type>server</type>
+					<name>calendar-valid.gif</name>
+					<server_path>images/</server_path>
+					<object>calendar_v2</object>
+					<shared type="bool">true</shared>
+					<mime>image/gif</mime>
+				</file>
+			</files_index>
+		</insert>
+	</calendar_v2:0.1.4>
+	
+	<calendar_v2:0.1.5 next="0.1.6">
+		<calendar_events>
+			<drop><description_is_url/></drop>
+			<add><url type="string" length="255" after="description"></url></add>
+		</calendar_events>
+	</calendar_v2:0.1.5>
+	
+	<calendar_v2:0.1.6 next="0.1.7">
+		<calendar_recurring_events>
+			<drop><description_is_url/></drop>
+			<add><url type="string" length="255" after="description"></url></add>
+		</calendar_recurring_events>
+	</calendar_v2:0.1.6>
+	
+	<calendar_v2:0.1.7 next="0.1.8">
+		<calendar_recurring_events>
+			<change><end_date type="datetime" /></change>
+		</calendar_recurring_events>
+	</calendar_v2:0.1.7>
+
+</db_alter>

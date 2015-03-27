@@ -1,0 +1,998 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<html version="4.0" src="http://www.w3.org/TR/REC-html40/index/attributes.html" next="onclick">
+	<tags>
+		<a endtag="required">
+			<attributes>
+				<accesskey/>
+				<charset/>
+				<class/>
+				<coords/>
+				<dir/>
+				<href/>
+				<hreflang/>
+				<id/>
+				<lang/>
+				<name/>
+				<onblur/>
+			</attributes>
+			<children>
+				<any except="a,body,col,colgroup,head,html,li,link,meta,optgroup,tbody,td,tfoot,th,thead,title,tr" />
+			</children>
+		</a>
+		<abbr endtag="required">
+			<attributes>
+				<class/>
+				<dir/>
+				<id/>
+				<lang/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr" />
+			</children>
+		</abbr>
+		<acronym endtag="required">
+			<attributes>
+				<class/>
+				<dir/>
+				<id/>
+				<lang/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr" />
+			</children>
+		</acronym>
+		<address endtag="required">
+			<attributes>
+				<class/>
+				<dir/>
+				<id/>
+				<lang/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr" />
+			</children>
+		</address>
+		<area endtag="forbidden">
+			<attributes>
+				<accesskey/>
+				<alt/>
+				<class/>
+				<coords/>
+				<dir/>
+				<href/>
+				<id/>
+				<lang/>
+				<nohref/>
+				<onblur/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr" />
+			</children>
+		</area>
+		<b endtag="required">
+			<attributes>
+				<class/>
+				<dir/>
+				<id/>
+				<lang/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr" />
+			</children>
+		</b>
+		<base endtag="forbidden">
+			<attributes>
+				<href/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr" />
+			</children>
+		</base>
+		<bdo endtag="required">
+			<attributes>
+				<class/>
+				<dir/>
+				<id/>
+				<lang/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr" />
+			</children>
+		</bdo>
+		<big endtag="required">
+			<attributes>
+				<class/>
+				<dir/>
+				<id/>
+				<lang/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr" />
+			</children>
+		</big>
+		<blockquote endtag="required">
+			<attributes>
+				<cite/>
+				<class/>
+				<dir/>
+				<id/>
+				<lang/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr" />
+			</children>
+		</blockquote>
+		<body endtag="required">
+			<attributes>
+				<class/>
+				<dir/>
+				<id/>
+				<lang/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr" />
+			</children>
+		</body>
+		<br endtag="forbidden">
+			<attributes>
+				<class/>
+				<id/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr" />
+			</children>
+		</br>
+		<button endtag="required">
+			<attributes>
+				<accesskey/>
+				<class/>
+				<dir/>
+				<disabled/>
+				<id/>
+				<lang/>
+				<name/>
+				<onblur/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr" />
+			</children>
+		</button>
+		<caption endtag="required">
+			<attributes>
+				<class/>
+				<dir/>
+				<id/>
+				<lang/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr" />
+			</children>
+		</caption>
+		<cite endtag="required">
+			<attributes>
+				<class/>
+				<dir/>
+				<id/>
+				<lang/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr" />
+			</children>
+		</cite>
+		<code endtag="required">
+			<attributes>
+				<class/>
+				<dir/>
+				<id/>
+				<lang/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr" />
+			</children>
+		</code>
+		<col endtag="forbidden">
+			<attributes>
+				<align/>
+				<char/>
+				<charoff/>
+				<class/>
+				<dir/>
+				<id/>
+				<lang/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr" />
+			</children>
+		</col>
+		<colgroup endtag="optional">
+			<attributes>
+				<align/>
+				<char/>
+				<charoff/>
+				<class/>
+				<dir/>
+				<id/>
+				<lang/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr" />
+			</children>
+		</colgroup>
+		<dd endtag="required">
+			<attributes>
+				<class/>
+				<dir/>
+				<id/>
+				<lang/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr" />
+			</children>
+		</dd>
+		<del endtag="required">
+			<attributes>
+				<class/>
+				<datetime/>
+				<dir/>
+				<id/>
+				<lang/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr" />
+			</children>
+		</del>
+		<dfn endtag="required">
+			<attributes>
+				<class/>
+				<dir/>
+				<id/>
+				<lang/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr" />
+			</children>
+		</dfn>
+		<div endtag="required">
+			<attributes>
+				<class/>
+				<dir/>
+				<id/>
+				<lang/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr" />
+			</children>
+		</div>
+		<dl endtag="required">
+			<attributes>
+				<class/>
+				<dir/>
+				<id/>
+				<lang/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr" />
+			</children>
+		</dl>
+		<dt endtag="optional">
+			<attributes>
+				<class/>
+				<dir/>
+				<id/>
+				<lang/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr" />
+			</children>
+		</dt>
+		<em endtag="required">
+			<attributes>
+				<class/>
+				<dir/>
+				<id/>
+				<lang/>
+			</attributes>
+			<children>
+				<any except="body,em,head,html,meta" />
+			</children>
+		</em>
+		<fieldset endtag="required">
+			<attributes>
+				<class/>
+				<dir/>
+				<id/>
+				<lang/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr" />
+			</children>
+		</fieldset>
+		<form endtag="required">
+			<attributes>
+				<accept-charset/>
+				<accept/>
+				<action/>
+				<class/>
+				<dir/>
+				<enctype/>
+				<id/>
+				<lang/>
+				<method/>
+				<name/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr" />
+			</children>
+		</form>
+		<frame endtag="required">
+			<attributes>
+				<class/>
+				<frameborder/>
+				<id/>
+				<longdesc/>
+				<marginheight/>
+				<marginwidth/>
+				<name/>
+				<noresize/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr" />
+			</children>
+		</frame>
+		<frameset endtag="required">
+			<attributes>
+				<class/>
+				<cols/>
+				<id/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr" />
+			</children>
+		</frameset>
+		<h1 endtag="required">
+			<attributes>
+				<class/>
+				<dir/>
+				<id/>
+				<lang/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr" />
+			</children>
+		</h1>
+		<h2 endtag="required">
+			<attributes>
+				<class/>
+				<dir/>
+				<id/>
+				<lang/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr" />
+			</children>
+		</h2>
+		<h3 endtag="required">
+			<attributes>
+				<class/>
+				<dir/>
+				<id/>
+				<lang/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr" />
+			</children>
+		</h3>
+		<h4 endtag="required">
+			<attributes>
+				<class/>
+				<dir/>
+				<id/>
+				<lang/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr" />
+			</children>
+		</h4>
+		<h5 endtag="required">
+			<attributes>
+				<class/>
+				<dir/>
+				<id/>
+				<lang/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr" />
+			</children>
+		</h5>
+		<h6 endtag="required">
+			<attributes>
+				<class/>
+				<dir/>
+				<id/>
+				<lang/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr" />
+			</children>
+		</h6>
+		<head endtag="optional">
+			<attributes>
+				<dir/>
+				<lang/>
+			</attributes>
+			<children>
+				<any except="body,head,html" />
+			</children>
+		</head>
+		<hr endtag="forbidden">
+			<attributes>
+				<class/>
+				<dir/>
+				<id/>
+				<lang/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr" />
+			</children>
+		</hr>
+		<html endtag="optional">
+			<attributes>
+				<dir/>
+				<lang/>
+			</attributes>
+			<children>
+				<none except="head,body" />
+			</children>
+		</html>
+		<i endtag="required">
+			<attributes>
+				<class/>
+				<dir/>
+				<id/>
+				<lang/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr" />
+			</children>
+		</i>
+		<iframe endtag="required">
+			<attributes>
+				<class/>
+				<frameborder/>
+				<height/>
+				<id/>
+				<longdesc/>
+				<marginheight/>
+				<marginwidth/>
+				<name/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr" />
+			</children>
+		</iframe>
+		<img endtag="forbidden">
+			<attributes>
+				<alt/>
+				<class/>
+				<dir/>
+				<height/>
+				<id/>
+				<ismap/>
+				<lang/>
+				<longdesc/>
+				<name/>
+			</attributes>
+			<children>
+				<none />
+			</children>
+		</img>
+		<input endtag="forbidden">
+			<attributes>
+				<accept/>
+				<accesskey/>
+				<alt/>
+				<checked/>
+				<class/>
+				<dir/>
+				<disabled/>
+				<id/>
+				<ismap/>
+				<lang/>
+				<maxlength/>
+				<name/>
+				<onblur/>
+				<onchange/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr" />
+			</children>
+		</input>
+		<ins endtag="required">
+			<attributes>
+				<class/>
+				<datetime/>
+				<dir/>
+				<id/>
+				<lang/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr" />
+			</children>
+		</ins>
+		<kbd endtag="required">
+			<attributes>
+				<class/>
+				<dir/>
+				<id/>
+				<lang/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr" />
+			</children>
+		</kbd>
+		<label endtag="required">
+			<attributes>
+				<accesskey/>
+				<class/>
+				<dir/>
+				<for/>
+				<id/>
+				<lang/>
+				<onblur/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr" />
+			</children>
+		</label>
+		<legend endtag="required">
+			<attributes>
+				<accesskey/>
+				<class/>
+				<dir/>
+				<id/>
+				<lang/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr" />
+			</children>
+		</legend>
+		<li endtag="required">
+			<attributes>
+				<class/>
+				<dir/>
+				<id/>
+				<lang/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr" />
+			</children>
+		</li>
+		<link endtag="forbidden">
+			<attributes>
+				<charset/>
+				<class/>
+				<dir/>
+				<href/>
+				<hreflang/>
+				<id/>
+				<lang/>
+				<media/>
+			</attributes>
+			<children>
+				<any except="a,body,head,html,link,meta" />
+			</children>
+		</link>
+		<map endtag="required">
+			<attributes>
+				<class/>
+				<dir/>
+				<id/>
+				<lang/>
+				<name/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr" />
+			</children>
+		</map>
+		<meta endtag="forbidden">
+			<attributes>
+				<content/>
+				<dir/>
+				<http-equiv/>
+				<lang/>
+				<name/>
+			</attributes>
+			<children>
+				<none />
+			</children>
+		</meta>
+		<noframes endtag="required">
+			<attributes>
+				<class/>
+				<dir/>
+				<id/>
+				<lang/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr,noframes" />
+			</children>
+		</noframes>
+		<noscript endtag="required">
+			<attributes>
+				<class/>
+				<dir/>
+				<id/>
+				<lang/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr,noscript" />
+			</children>
+		</noscript>
+		<object endtag="required">
+			<attributes>
+				<archive/>
+				<class/>
+				<classid/>
+				<codebase/>
+				<codetype/>
+				<data/>
+				<declare/>
+				<dir/>
+				<height/>
+				<id/>
+				<lang/>
+				<name/>
+			</attributes>
+			<children>
+				<none />
+			</children>
+		</object>
+		<ol endtag="required">
+			<attributes>
+				<class/>
+				<dir/>
+				<id/>
+				<lang/>
+			</attributes>
+			<children>
+				<none except="li" />
+			</children>
+		</ol>
+		<optgroup endtag="required">
+			<attributes>
+				<class/>
+				<dir/>
+				<disabled/>
+				<id/>
+				<label/>
+				<lang/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr" />
+			</children>
+		</optgroup>
+		<option endtag="required">
+			<attributes>
+				<class/>
+				<dir/>
+				<disabled/>
+				<id/>
+				<label/>
+				<lang/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr" />
+			</children>
+		</option>
+		<p endtag="required">
+			<attributes>
+				<class/>
+				<dir/>
+				<id/>
+				<lang/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr" />
+			</children>
+		</p>
+		<param endtag="forbidden">
+			<attributes>
+				<id/>
+				<name/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr" />
+			</children>
+		</param>
+		<pre endtag="required">
+			<attributes>
+				<class/>
+				<dir/>
+				<id/>
+				<lang/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr" />
+			</children>
+		</pre>
+		<q endtag="required">
+			<attributes>
+				<cite/>
+				<class/>
+				<dir/>
+				<id/>
+				<lang/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr" />
+			</children>
+		</q>
+		<samp endtag="required">
+			<attributes>
+				<class/>
+				<dir/>
+				<id/>
+				<lang/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr" />
+			</children>
+		</samp>
+		<script endtag="required">
+			<attributes>
+				<charset/>
+				<defer/>
+			</attributes>
+			<children>
+				<none />
+			</children>
+		</script>
+		<select endtag="required">
+			<attributes>
+				<class/>
+				<dir/>
+				<disabled/>
+				<id/>
+				<lang/>
+				<multiple/>
+				<name/>
+				<onblur/>
+				<onchange/>
+			</attributes>
+			<children>
+				<none except="option" />
+			</children>
+		</select>
+		<small endtag="required">
+			<attributes>
+				<class/>
+				<dir/>
+				<id/>
+				<lang/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr" />
+			</children>
+		</small>
+		<span endtag="required">
+			<attributes>
+				<class/>
+				<dir/>
+				<id/>
+				<lang/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr" />
+			</children>
+		</span>
+		<strong endtag="required">
+			<attributes>
+				<class/>
+				<dir/>
+				<id/>
+				<lang/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr,strong" />
+			</children>
+		</strong>
+		<style endtag="required">
+			<attributes>
+				<dir/>
+				<lang/>
+				<media/>
+			</attributes>
+			<children>
+				<none />
+			</children>
+		</style>
+		<sub endtag="required">
+			<attributes>
+				<class/>
+				<dir/>
+				<id/>
+				<lang/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr,sub,sup" />
+			</children>
+		</sub>
+		<sup endtag="required">
+			<attributes>
+				<class/>
+				<dir/>
+				<id/>
+				<lang/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr,sub,sup" />
+			</children>
+		</sup>
+		<table endtag="required">
+			<attributes>
+				<border/>
+				<cellpadding/>
+				<cellspacing/>
+				<class/>
+				<dir/>
+				<frame/>
+				<id/>
+				<lang/>
+			</attributes>
+			<children>
+				<none except="tfoot,thead,tr" />
+			</children>
+		</table>
+		<tbody endtag="optional">
+			<attributes>
+				<align/>
+				<char/>
+				<charoff/>
+				<class/>
+				<dir/>
+				<id/>
+				<lang/>
+			</attributes>
+			<children>
+				<none except="tr" />
+			</children>
+		</tbody>
+		<td endtag="optional">
+			<attributes>
+				<abbr/>
+				<align/>
+				<axis/>
+				<char/>
+				<charoff/>
+				<class/>
+				<colspan/>
+				<dir/>
+				<headers/>
+				<id/>
+				<lang/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr" />
+			</children>
+		</td>	
+		<textarea endtag="required">
+			<attributes>
+				<accesskey/>
+				<class/>
+				<cols/>
+				<dir/>
+				<disabled/>
+				<id/>
+				<lang/>
+				<name/>
+				<onblur/>
+				<onchange/>
+			</attributes>
+			<children>
+				<none />
+			</children>
+		</textarea>
+		<tfoot endtag="optional">
+			<attributes>
+				<align/>
+				<char/>
+				<charoff/>
+				<class/>
+				<dir/>
+				<id/>
+				<lang/>
+			</attributes>
+			<children>
+				<none except="tr" />
+			</children>
+		</tfoot>
+		<th endtag="optional">
+			<attributes>
+				<abbr/>
+				<align/>
+				<axis/>
+				<char/>
+				<charoff/>
+				<class/>
+				<colspan/>
+				<dir/>
+				<headers/>
+				<id/>
+				<lang/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr" />
+			</children>
+		</th>
+		<thead endtag="optional">
+			<attributes>
+				<align/>
+				<char/>
+				<charoff/>
+				<class/>
+				<dir/>
+				<id/>
+				<lang/>
+			</attributes>
+			<children>
+				<none except="tr" />
+			</children>
+		</thead>
+		<title endtag="required">
+			<attributes>
+				<dir/>
+				<lang/>
+			</attributes>
+			<children>
+				<none />
+			</children>
+		</title>
+		<tr endtag="optional">
+			<attributes>
+				<align/>
+				<char/>
+				<charoff/>
+				<class/>
+				<dir/>
+				<id/>
+				<lang/>
+			</attributes>
+			<children>
+				<none except="td,th" />
+			</children>
+		</tr>
+		<tt endtag="required">
+			<attributes>
+				<class/>
+				<dir/>
+				<id/>
+				<lang/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr" />
+			</children>
+		</tt>
+		<ul endtag="required">
+			<attributes>
+				<class/>
+				<dir/>
+				<id/>
+				<lang/>
+			</attributes>
+			<children>
+				<none except="li" />
+			</children>
+		</ul>
+		<var endtag="required">
+			<attributes>
+				<class/>
+				<dir/>
+				<id/>
+				<lang/>
+			</attributes>
+			<children>
+				<any except="body,col,colgroup,head,html,li,meta,optgroup,tbody,td,tfoot,th,thead,title,tr" />
+			</children>
+		</var>
+	</tags>
+</html>

@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<db_alter>
+	<cms_manager:0.1 next="0.2">
+		<cms_content>
+			<add>
+				<ssl_required type="bool" after="enabled"></ssl_required>
+				<http_content_type type="string" length="40" after="description"></http_content_type>
+			</add>
+			<alter>
+				<http_content_type type="string">text/html; charset=utf-8</http_content_type>
+			</alter>
+		</cms_content>
+	</cms_manager:0.1>
+	<cms_manager:0.2 next="0.3">
+		<cms_content>
+			<add>
+				<type type="string" after="unique_id" length="6"></type>
+			</add>
+			<alter>
+				<type type="string">normal</type>
+			</alter>
+		</cms_content>
+	</cms_manager:0.2>
+	<cms_manager:0.3 next="0.4">
+		
+	</cms_manager:0.3>
+	<cms_manager:0.4 next="0.4.1">
+		<cms_content>
+			<alter>
+				<type length="8" />
+			</alter>
+		</cms_content>
+	</cms_manager:0.4>
+	<cms_manager:0.4.1 next="0.4.2">
+		<cms_content>
+			<modify>
+				<type type="string" length="8" />
+			</modify>
+		</cms_content>
+	</cms_manager:0.4.1>
+	
+	<cms_manager:0.4.2 next="0.4.3">
+		<delete>
+			<files_index>
+				<id>1</id>
+			</files_index>
+		</delete>
+		<insert>
+			<files_index>
+				<file>
+					<id>1</id>
+					<unique_id>setup.css</unique_id>
+					<type>sscript</type>
+					<name>setup.css.php</name>
+					<description>setup css document</description>
+					<object>cms_manager</object>
+					<shared type="bool">true</shared>
+					<mime>text/css</mime>
+				</file>
+			</files_index>
+		</insert>
+	</cms_manager:0.4.2>
+	
+	<cms_manager:0.4.3 next="0.4.4">
+		<cms_element>
+			<modify>
+				<name type="string" length="128" notnull="true"></name>
+				<title type="string" length="128"></title>
+				<link_title type="string" length="128"></link_title>
+			</modify>
+		</cms_element>
+	</cms_manager:0.4.3>
+	
+	<cms_manager:0.4.4 next="0.4.5">
+		<cms_element>
+			<modify>
+				<modified type="timestamp"></modified>
+			</modify>
+		</cms_element>
+	</cms_manager:0.4.4>
+	
+	<cms_manager:0.4.5 next="0.4.6">
+		<cms_navigation>
+			<add>
+				<parent_id type="string" length="128" after="nav_level"></parent_id>
+			</add>
+		</cms_navigation>
+	</cms_manager:0.4.5>
+	
+	<cms_manager:0.4.6 next="0.4.7">
+		<cms_navigation>
+			<modify>
+				<parent_id type="string" length="255"></parent_id>
+			</modify>
+		</cms_navigation>
+		<delete>
+			<cms_navigation><path>admin/modules</path></cms_navigation>
+			<cms_navigation><path>admin/cms</path></cms_navigation>
+			<cms_navigation><path>admin/cms/settings</path></cms_navigation>
+			<cms_navigation><path>admin/template</path></cms_navigation>
+			<cms_navigation><path>admin/file</path></cms_navigation>
+			<cms_navigation><path>admin/access</path></cms_navigation>
+		</delete>
+		<insert>
+			<cms_navigation>
+				<record>
+					<path>admin/modules</path>
+					<element_id>002</element_id>
+					<menu_visible type="boolean">true</menu_visible>
+					<nav_level type="integer">1</nav_level>
+					<parent_id>admin</parent_id>
+				</record>
+				<record>
+					<path>admin/cms</path>
+					<element_id>003</element_id>
+					<menu_visible type="boolean">true</menu_visible>
+					<nav_level type="integer">1</nav_level>
+					<parent_id>admin</parent_id>
+				</record>
+				<record>
+					<path>admin/cms/settings</path>
+					<element_id>004</element_id>
+					<menu_visible type="boolean">false</menu_visible>
+					<nav_level type="integer">2</nav_level>
+					<parent_id>admin/cms</parent_id>
+				</record>
+				<record>
+					<path>admin/template</path>
+					<element_id>005</element_id>
+					<menu_visible type="boolean">true</menu_visible>
+					<nav_level type="integer">1</nav_level>
+					<parent_id>admin</parent_id>
+				</record>
+				<record>
+					<path>admin/file</path>
+					<element_id>006</element_id>
+					<menu_visible type="boolean">true</menu_visible>
+					<nav_level type="integer">1</nav_level>
+					<parent_id>admin</parent_id>
+				</record>				
+				<record>
+					<path>admin/access</path>
+					<element_id>007</element_id>
+					<menu_visible type="boolean">true</menu_visible>
+					<nav_level type="integer">1</nav_level>
+					<parent_id>admin</parent_id>
+				</record>
+			</cms_navigation>
+		</insert>
+	</cms_manager:0.4.6>
+	
+	<cms_manager:0.4.7 next="0.4.8">
+		<insert>
+			<files_index>
+				<file>
+					<unique_id>target-48x48.png</unique_id>
+					<type>server</type>
+					<name>target-48x48.png</name>
+					<object>cms_manager</object>
+					<shared type="bool">true</shared>
+					<mime>image/png</mime>
+				</file>
+			</files_index>
+		</insert>
+	</cms_manager:0.4.7>
+	
+	<cms_manager:0.4.8 next="0.4.9">
+		<cms_navigation>
+			<add>
+				<parent_order type="integer" unsigned="true" notnull="true" after="parent_id">0</parent_order>
+			</add>
+		</cms_navigation>
+	</cms_manager:0.4.8>
+	
+	<cms_manager:0.4.9 next="0.4.10">
+		<delete>
+			<cms_element>
+				<id>007</id>
+			</cms_element>
+		</delete>
+		<insert>
+			<cms_element>
+				<record>
+					<id>007</id>
+					<name>security management</name>
+					<type>circuit</type>
+					<content>##_security::control_panel_##</content>
+					<title>ema security management</title>
+					<link_title/>
+					<description/>
+					<content_type>html</content_type>
+					<template_id>0</template_id>
+					<created_by>w. strucke</created_by>
+					<updated_by>w. strucke</updated_by>
+					<modified>08-14-2010 13:56</modified>
+				</record>
+			</cms_element>
+		</insert>
+	</cms_manager:0.4.9>
+	
+	<cms_manager:0.4.10 next="0.4.11">
+		<insert>
+			<files_index>
+				<file>
+					<unique_id>window-close.png</unique_id>
+					<type>server</type>
+					<name>window-close.png</name>
+					<server_path>images/</server_path>
+					<object>cms_manager</object>
+					<shared type="bool">true</shared>
+					<mime>image/png</mime>
+				</file>
+				<file>
+					<unique_id>window-title-bar.png</unique_id>
+					<type>server</type>
+					<name>window-title-bar.png</name>
+					<server_path>images/</server_path>
+					<object>cms_manager</object>
+					<shared type="bool">true</shared>
+					<mime>image/png</mime>
+				</file>
+			</files_index>
+		</insert>
+	</cms_manager:0.4.10>
+	
+	<cms_manager:0.4.11 next="0.4.12">
+		<insert>
+			<files_index>
+				<file>
+					<unique_id>modules.js</unique_id>
+					<type>sscript</type>
+					<name>modules.js</name>
+					<server_path>javascript/</server_path>
+					<description>ema modules javascript library</description>
+					<object>cms_manager</object>
+					<shared type="bool">true</shared>
+					<mime>text/javascript</mime>
+				</file>
+			</files_index>
+		</insert>
+	</cms_manager:0.4.11>
+	
+	<cms_manager:0.4.12 next="0.4.13">
+		<cms_navigation>
+			<add><template_id type="string" length="4" /></add>
+		</cms_navigation>
+	</cms_manager:0.4.12>
+	
+	<cms_manager:0.4.13 next="0.4.14">
+		<insert>
+			<files_index>
+				<file>
+					<unique_id>arrow_up-18x18.png</unique_id>
+					<type>server</type>
+					<name>arrow_up-18x18.png</name>
+					<server_path>images/</server_path>
+					<object>cms_manager</object>
+					<shared type="bool">true</shared>
+					<mime>image/png</mime>
+				</file>
+			</files_index>
+		</insert>
+	</cms_manager:0.4.13>
+	
+	<cms_manager:0.4.14 next="0.4.15">
+		<cms_element><add><module type="string" length="50" after="type" /></add></cms_element>
+		<update>
+			<cms_element>
+				<match>*</match>
+				<set><module>cms_manager</module></set>
+			</cms_element>
+		</update>
+	</cms_manager:0.4.14>
+	
+	<cms_manager:0.4.15 next="0.4.16">
+		<cms_element><add><function type="string" length="255" after="module" /></add></cms_element>
+	</cms_manager:0.4.15>
+	
+	<cms_manager:0.4.16 next="0.4.17">
+		<cms_element><add><link_in_menu type="bool">false</link_in_menu></add></cms_element>
+		<insert>
+			<files_index>
+				<file>
+					<unique_id>cms_ui.js</unique_id>
+					<type>sscript</type>
+					<name>cms_ui.js</name>
+					<server_path>javascript/</server_path>
+					<object>cms_manager</object>
+					<shared type="bool">true</shared>
+					<mime>text/javascript</mime>
+				</file>
+				<file>
+					<unique_id>info-16x16.png</unique_id>
+					<type>server</type>
+					<name>info-16x16.png</name>
+					<server_path>images/</server_path>
+					<object>cms_manager</object>
+					<shared type="bool">true</shared>
+					<mime>image/png</mime>
+				</file>
+			</files_index>
+		</insert>
+	</cms_manager:0.4.16>
+	
+	<cms_manager:0.4.17 next="0.4.18">
+		<cms_element><drop><link_in_menu /></drop></cms_element>
+		<cms_navigation>
+			<add><id type="integer" unsigned="true" primary="true" autoinc="true" first="true"></id></add>
+			<change><element_id type="string" length="128" notnull="true" /></change>
+		</cms_navigation>
+	</cms_manager:0.4.17>
+	
+	<cms_manager:0.4.18 next="0.4.18.1">
+		<cms_navigation>
+			<change><path type="string" length="255" unique="true" /></change>
+		</cms_navigation>
+	</cms_manager:0.4.18>
+	
+	<cms_manager:0.4.18.1 next="0.4.19">
+		<update>
+			<cms_navigation>
+				<match>*</match>
+				<set><parent_id type="sql">SELECT `id` FROM `cms_navigation` WHERE `path`='#SELF#'</parent_id></set>
+			</cms_navigation>
+		</update>
+		<cms_navigation><change><parent_id type="integer" unsigned="true" /></change></cms_navigation>
+	</cms_manager:0.4.18.1>
+	
+	<cms_manager:0.4.19 next="0.4.20">
+		<cms_element>
+			<add><link_uri type="string" length="255" /></add>
+			<add><link_is_external type="boolean" /></add>
+		</cms_element>
+		<update>
+			<cms_element>
+				<match><type>link</type></match>
+				<set><link_uri type="column">content</link_uri></set>
+			</cms_element>
+		</update>
+		<update>
+			<cms_element>
+				<match><type>link</type></match>
+				<set>
+					<link_is_external type="boolean">true</link_is_external>
+					<content type="null" />
+				</set>
+			</cms_element>
+		</update>
+	</cms_manager:0.4.19>
+	
+	<cms_manager:0.4.20 next="0.4.21">
+		<cms_element>
+			<add><link_is_outdated type="boolean" notnull="true" after="link_is_external">0</link_is_outdated></add>
+		</cms_element>
+	</cms_manager:0.4.20>
+	
+	<cms_manager:0.4.21 next="0.4.21.1">
+		<cms_element><drop><link_is_outdated /></drop></cms_element>
+		<cms_navigation><add><path_is_outdated type="boolean" notnull="true">0</path_is_outdated></add></cms_navigation>
+	</cms_manager:0.4.21>
+	
+	<cms_manager:0.4.21.1 next="0.4.22">
+		<cms_element>
+			<add>
+				<process_php type="bool">true</process_php>
+				<process_ema type="bool">true</process_ema>
+			</add>
+		</cms_element>
+	</cms_manager:0.4.21.1>
+
+	<cms_manager:0.4.22 next="0.4.23">
+		<insert>
+			<cms_settings><record><option>htaccess</option><value>0</value></record></cms_settings>
+		</insert>
+	</cms_manager:0.4.22>
+	
+	<cms_manager:0.4.23 next="0.4.24">
+		<insert>
+			<modules>
+				<record>
+					<name>cache_basic</name>
+					<module>engine</module>
+					<enabled type="bool">true</enabled>
+					<load_order type="integer">9</load_order>
+					<provides>cache</provides>
+					<type>basic</type>
+					<path>./built-in/cache_basic/cache_basic.class.php</path>
+					<refresh type="bool">1</refresh>
+				</record>
+			</modules>
+		</insert>
+	</cms_manager:0.4.23>
+	
+</db_alter>

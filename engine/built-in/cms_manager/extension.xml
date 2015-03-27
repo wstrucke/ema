@@ -1,0 +1,789 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<cms-extension version="1.0">
+	<title>Content Management System Manager</title>
+	<object_name>cms_manager</object_name>
+	<version>1.0.0</version>
+	<cms_version_minimum>2.0</cms_version_minimum>
+	<cms_version_maximum/>
+	<object_file>cms_manager</object_file>
+	<author>William Strucke</author>
+	<email>wstrucke@gmail.com</email>
+	<url>http://home2.arts.ohio-state.edu/~strucke1</url>
+	<description/>
+	<requires>
+		<db version_minimum="1.1"/>
+		<output_standard version_minimum="1.0"/>
+		<template_manager version_minimum="1.0"/>
+		<html_element version_minimum="1.0"/>
+		<css_document version_minimum="1.0"/>
+		<file_manager/>
+	</requires>
+	<provides>cms</provides>
+	<type>manager</type>
+	<allow_export>false</allow_export>
+	<arguments>
+		<outs type="object" model="output_standard">true</outs>
+		<template type="object" model="template_manager">true</template>
+		<css type="object" model="css_document">true</css>
+		<db type="object" model="db">true</db>
+		<client_extensions type="object" model="xml_object">false</client_extensions>
+	</arguments>
+	<gears>true</gears>
+	<filament enabled="true">
+		<generate_menu title="Site Menu"/>
+	</filament>
+	<schema version="0.4.24">
+		
+		<!-- the elements table contains our actual "pages" and data -->
+		<cms_element>
+		
+			<id type="string" length="128" primary="true" unique="true" />
+			<!-- id is a unique internal string identifier for each element -->
+			
+			<name type="string" length="128" notnull="true" />
+			<!-- name is an arbitrary name assigned to the page by the end user -->
+			
+			<shared type="bool" notnull="true">false</shared>
+			<!-- shared is a boolean value indicating whether or not the element
+					is embedded in another element -->
+			
+			<type type="string" length="8" notnull="true">thread</type>
+			<!-- type is the cms element type: link, thread, circuit, fuse, or filament -->
+			
+			<module type="string" length="50" />
+			<!-- module is the optional name of the module that registered the element
+					elements registered by a module other than the cms should not be
+					allowed to be deleted by the cms -->
+			
+			<function type="string" length="255" />
+			<!-- function is the name of the fuse function to call for fuses -->
+			
+			<content type="text" length="65535" />
+			<!-- content is the actual html data sent to the client.
+						it should have structual elements, but avoid anything
+						relating to a specific style sheet or template. it can include
+						references to other elements with the syntax ##__ELEMENTID__##
+					for links, the URL is stored here -->
+			
+			<title type="string" length="128" />
+			<!-- title is an optional page title, only used if enabled in the site settings -->
+			
+			<link_title type="string" length="128" />
+			<!-- link title is an optional html title inserted when this element is statically
+					linked from a menu or another page -->
+			
+			<link_uri type="string" length="255" />
+			<!-- for type link: the address the link is for -->
+			
+			<link_is_external type="boolean" />
+			<!-- for type link: whether the link_uri should be passed to url(...) or set explicitely -->
+			
+			<description type="string" length="255" />
+			<!-- description is a useful description visible to clients in the cms manager -->
+			
+			<content_type type="string" length="40">html</content_type>
+			<!-- the http content type sent to the browser for this page.
+					options are: "html", "xml", "download", "css", or "javascript" -->
+			
+			<template_id type="string" length="4" />
+			<!-- if this element uses a specific template, other than whatever is configured
+					for the site, provide the template id here -->
+			
+			<created_by type="string" length="100" />
+			<!-- the name of the user who created this element -->
+			
+			<updated_by type="string" length="100" />
+			<!-- the name of the user who last modified this element -->
+			
+			<modified type="timestamp" />
+			<!-- when this element was lasted updated (time stamp) -->
+			
+			<enabled type="bool">true</enabled>
+			<!-- is this element enabled? -->
+			
+			<locked type="bool">false</locked>
+			<!-- is this element locked? e.g. no changes allowed -->
+			
+			<ssl_required type="bool">false</ssl_required>
+			<!-- does the cms require an SSL connection before sending this element? -->
+			
+			<process_php type="bool">true</process_php>
+			<!-- should the cms parse and exec php code in the element -->
+			
+			<process_ema type="bool">true</process_ema>
+			<!-- should the cms extract and replace special ema commands in the element -->
+			
+		</cms_element>
+		
+		<!-- the navigation table (a.k.a. menu table) -->
+		<cms_navigation>
+			
+			<id type="integer" unsigned="true" primary="true" autoinc="true"></id>
+			<!-- the navigation entry id -->
+			
+			<path type="string" length="255" unique="true" />
+			<!-- the path for this page/reference, e.g. "home/contact" -->
+			
+			<element_id type="string" length="128" notnull="true" />
+			<!-- the id from the cms_element table -->
+			
+			<menu_visible type="boolean" notnull="true">true</menu_visible>
+			<!-- true if the item should appear in the site menu system.
+					false if it should only be made accessible via the nav system -->
+			
+			<nav_level type="integer" unsigned="true">1</nav_level>
+			<!-- the navigation level, used by the menu generator to quickly
+					grab the appropriate menu level without viewing all records.
+					this field may be deprecated by future optimizations. -->
+			
+			<parent_id type="integer" unsigned="true" />
+			<!-- optional parent path id, null or element id -->
+			
+			<parent_order type="integer" unsigned="true" notnull="true">0</parent_order>
+			<!-- the order in the list -->
+			
+			<template_id type="string" length="4" />
+			<!-- if this element uses a specific template, other than whatever is configured
+					for the site, provide the template id here -->
+			
+			<path_is_outdated type="boolean" notnull="true">0</path_is_outdated>
+			<!-- whether the path is outdated and the cms should notify the user -->
+			
+		</cms_navigation>
+		
+		<!-- cms module settings -->
+	<cms_settings>
+		<option type="string" length="25" primary="true" unique="true" />
+		<value type="string" length="255" />
+	</cms_settings>
+	
+</schema>
+
+<!-- predefinied queries :: not implemented in engine or sql objects yet -->
+<query>
+	<get_snips>
+		<!-- we're going to assume that if no table is specified we mean the root table -->
+		<select>
+			id, shared, preferred_element, content_type, static, minimum_width, minimum_height, snip,
+			children, map_cms_content_snips.load_order
+		</select>
+		<from>
+			<cms_snips>
+				<map_cms_content_snips type="left" on="id">snip_id</map_cms_content_snips>
+			</cms_snips>
+		</from>
+		<where>
+			<map_cms_content_snips.content_id type="integer">1</map_cms_content_snips.content_id>
+		</where>
+	</get_snips>
+</query>
+
+<!-- initial data after table creation -->
+<data>
+	
+	<cms_settings>
+		<record><option>htaccess</option><value>0</value></record>
+	</cms_settings>
+
+	<cms_element>
+	
+		<record>
+			<id>008</id>
+			<name>dev home</name>
+			<type>thread</type>
+			<content type="html">
+<div id="contact">
+<span>Contact Us <a href="#">more...</a></span>
+<p>OSU Marching Band</p>
+<p>1866 College Road</p>
+<p>110 Weigel Hall</p>
+<p>Columbus, OH 43210</p>
+<br />
+<p>(614) 292-2598&nbsp; - &nbsp;<a href="mailto:osumb@osu.edu">E-mail</a></p>
+</div>
+
+<div class="insert">
+<img src="download/random04.jpg" width="300" height="190" alt="OSU Marching and Athletic Bands" />
+<h1>TBDBITL.OSU.EDU</h1>
+<p>Welcome to the online home of the <acronym title="The Ohio State University">OSU</acronym> 
+	Marching and Athletic Bands!  Here you can find current band schedules, course information, 
+	candidate information, and much, much more.  We hope you find our layout appealing and 
+	easy to navigate.</p>
+<p>Enjoy your visit and Go Bucks!</p>
+</div>
+
+<div id="calendarWeekContainer">
+##_calendar::outputWeek_##
+<div id="calendarWeekMask">&nbsp;</div>
+</div>
+
+<div class="advertisement">
+	<h2>Own a piece of OSU Marching Band History</h2>
+	To purchase a copy of the 2004 Script Ohio book, you can contact the band center or books can be
+	purchased on campus at <a href="http://ohiostate.bkstore.com/default.asp?m=0313&b=9035&book_cat=71">Long's Book Store</a>.
+</div>
+
+<ul id="headlines">
+	<li class="head">Headlines</li>
+	<li id="h1">
+		<a class="fxButton" href="javascript:showHeadline('h1');">read</a>
+		<span>February 1, 2007</span>Lorum Ipsum Dolor...
+		<div>
+			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Etiam lectus libero, viverra nec, sollicitudin dignissim, 
+				consectetuer sed, libero. Duis ac neque. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Etiam vel orci et 
+				lorem bibendum vehicula. Quisque venenatis, tellus eu elementum vehicula, massa tortor iaculis tortor, a congue 
+				velit arcu sit amet mi. In aliquam auctor pede. Nullam fermentum lorem. Mauris eget nunc. Donec tellus nunc, interdum 
+				a, fringilla aliquet, commodo id, quam. Curabitur imperdiet. Maecenas dui nunc, euismod et, egestas a, fermentum a, 
+				nisi. Nulla facilisi. Morbi blandit, purus at lacinia dictum, neque felis facilisis orci, ut elementum eros sapien 
+				sit amet elit. Etiam nibh.</p>
+			<p>Aenean vestibulum dictum nisi. Morbi scelerisque tincidunt justo. In neque mauris, eleifend ac, scelerisque sit amet, 
+				commodo commodo, libero. Curabitur molestie sem quis nunc. In lorem. Nulla facilisi. Maecenas sed orci eu ante euismod 
+				molestie. Cras felis diam, aliquam eget, dapibus sit amet, sagittis vel, tellus. Donec eget ligula. Nulla malesuada. 
+				Morbi at ante sed neque dignissim vestibulum. Etiam rhoncus orci non velit. Fusce erat. Donec blandit mauris vitae 
+				ligula. Vestibulum ante pede, pellentesque eget, iaculis et, lacinia sed, arcu. Lorem ipsum dolor sit amet, 
+				consectetuer adipiscing elit. Ut risus ligula, mollis sed, pulvinar eu, convallis eget, turpis.</p>
+		</div>
+	</li>
+	<li id="h2"><span>January 30, 2007</span>Welcome to Ohio State!</li>
+	<li id="h3"><span>January 1, 2007</span>Happy New Year and some other things...</li>
+	<li id="h4"><span>December 20, 2006</span>Winter break or something</li>
+</ul>
+				</content>
+				<title>Version 3 :: Build 0012</title>
+				<link_title>Dev Home</link_title>
+				<description>tbdbitl.osu.edu version 3 development home page</description>
+				<content_type>html</content_type>
+				<template_id>2</template_id>
+				<created_by>w. strucke</created_by>
+				<updated_by>w. strucke</updated_by>
+				<modified>03-01-2010 12:40</modified>
+			</record>
+			
+			<record>
+				<id>009</id>
+				<name>osu navbar</name>
+				<type>thread</type>
+				<content>
+<div id="osu-Navbar">
+	<p>
+		<a href="#page-content" id="skip" class="osu-semantic">skip to main content</a>
+	</p>
+	<h2 class="osu-semantic">OSU Navigation Bar</h2>
+	<div id="osu-NavbarBreadcrumb">
+		<p id="osu">
+			<a title="The Ohio State University homepage" href="http://www.osu.edu/">The Ohio State University</a>
+		</p>
+		<p id="site-name">
+		   #__site_name__#
+		</p>
+	</div>
+	<div id="osu-NavbarLinks">
+		<ul>
+			<li><a href="http://www.osu.edu/help.php" title="OSU Help">Help</a></li>
+			<li><a href="http://buckeyelink.osu.edu/" title="Buckeye Link">Buckeye Link</a></li>
+			<li><a href="http://www.osu.edu/map/" title="Campus map">Map</a></li>
+			<li><a href="http://www.osu.edu/findpeople.php" title="Find people at OSU">Find People</a></li>
+			<li><a href="https://webmail.osu.edu" title="OSU Webmail">Webmail</a></li>
+			<li id="searchbox">
+				<form action="http://google.service.ohio-state.edu/search" method="get" >
+					<input value="date:D:L:d1" name="sort" type="hidden" />
+					<input value="xml_no_dtd" name="output" type="hidden" />
+					<input value="UTF-8" name="ie" type="hidden" />
+					<input value="UTF-8" name="oe" type="hidden" />
+					<input value="default_frontend" name="client" type="hidden" />
+					<input value="default_frontend" name="proxystylesheet" type="hidden" />
+					<input value="default_collection" name="site" type="hidden" />
+					<input type="hidden" name="as_dt" value="i" />
+					<fieldset>
+						<legend>
+							<span class="osu-semantic">Search</span>
+						</legend>
+						<label for="search-field" class="overlabel">Search Ohio State</label>
+						<input id="search-field" class="textfield" type="text" name="q" value="" />
+						<button type="submit" name="go">Go</button>
+					</fieldset>
+				</form>
+		  </li>       
+		</ul>
+	</div>
+</div>
+				</content>
+				<title>OSU Navigation Bar</title>
+				<link_title/>
+				<description/>
+				<template_id>1</template_id>
+				<content_type>html</content_type>
+				<created_by>w. strucke</created_by>
+				<updated_by>w. strucke</updated_by>
+				<modified>03-01-2010 12:40</modified>
+			</record>
+			
+		</cms_element>
+		
+		<files_index>
+			<file>
+				<unique_id>setup.css</unique_id>
+				<type>sscript</type>
+				<name>setup.css</name>
+				<description>setup css document</description>
+				<server_path>css/</server_path>
+				<object>cms_manager</object>
+				<shared type="bool">true</shared>
+				<mime>text/css</mime>
+			</file>
+			<file>
+				<unique_id>database-128x128.png</unique_id>
+				<type>server</type>
+				<name>database-128x128.png</name>
+				<server_path>images/</server_path>
+				<object>cms_manager</object>
+				<shared type="bool">true</shared>
+				<mime>image/png</mime>
+			</file>
+			<file>
+				<unique_id>decrypted-128x128.png</unique_id>
+				<type>server</type>
+				<name>decrypted-128x128.png</name>
+				<server_path>images/</server_path>
+				<object>cms_manager</object>
+				<shared type="bool">true</shared>
+				<mime>image/png</mime>
+			</file>
+			<file>
+				<unique_id>filesystem-128x128.png</unique_id>
+				<type>server</type>
+				<name>filesystem-128x128.png</name>
+				<server_path>images/</server_path>
+				<object>cms_manager</object>
+				<shared type="bool">true</shared>
+				<mime>image/png</mime>
+			</file>
+			<file>
+				<unique_id>folder-tar-128x128.png</unique_id>
+				<type>server</type>
+				<name>folder-tar-128x128.png</name>
+				<server_path>images/</server_path>
+				<object>cms_manager</object>
+				<shared type="bool">true</shared>
+				<mime>image/png</mime>
+			</file>
+			<file>
+				<unique_id>gear-128x128.png</unique_id>
+				<type>server</type>
+				<name>gear-128x128.png</name>
+				<server_path>images/</server_path>
+				<object>cms_manager</object>
+				<shared type="bool">true</shared>
+				<mime>image/png</mime>
+			</file>
+			<file>
+				<unique_id>lists-128x128.png</unique_id>
+				<type>server</type>
+				<name>lists-128x128.png</name>
+				<server_path>images/</server_path>
+				<object>cms_manager</object>
+				<shared type="bool">true</shared>
+				<mime>image/png</mime>
+			</file>
+			<file>
+				<unique_id>organizer-128x128.png</unique_id>
+				<type>server</type>
+				<name>organizer-128x128.png</name>
+				<server_path>images/</server_path>
+				<object>cms_manager</object>
+				<shared type="bool">true</shared>
+				<mime>image/png</mime>
+			</file>
+			<file>
+				<unique_id>tools-128x128.png</unique_id>
+				<type>server</type>
+				<name>tools-128x128.png</name>
+				<server_path>images/</server_path>
+				<object>cms_manager</object>
+				<shared type="bool">true</shared>
+				<mime>image/png</mime>
+			</file>
+			<file>
+				<unique_id>cms.js</unique_id>
+				<type>sscript</type>
+				<name>cms.js</name>
+				<server_path>javascript/</server_path>
+				<object>cms_manager</object>
+				<shared type="bool">true</shared>
+				<mime>text/javascript</mime>
+			</file>
+			<file>
+				<unique_id>cms_ui.js</unique_id>
+				<type>sscript</type>
+				<name>cms_ui.js</name>
+				<server_path>javascript/</server_path>
+				<object>cms_manager</object>
+				<shared type="bool">true</shared>
+				<mime>text/javascript</mime>
+			</file>
+			<file>
+				<unique_id>pencil-32x32.png</unique_id>
+				<type>server</type>
+				<name>pencil-32x32.png</name>
+				<server_path>images/</server_path>
+				<object>cms_manager</object>
+				<shared type="bool">true</shared>
+				<mime>image/png</mime>
+			</file>
+			<file>
+				<unique_id>plugins-48x48.png</unique_id>
+				<type>server</type>
+				<name>plugins-48x48.png</name>
+				<server_path>images/</server_path>
+				<object>cms_manager</object>
+				<shared type="bool">true</shared>
+				<mime>image/png</mime>
+			</file>
+			<file>
+				<unique_id>users-folder-48x48.png</unique_id>
+				<type>server</type>
+				<name>users-folder-48x48.png</name>
+				<server_path>images/</server_path>
+				<object>cms_manager</object>
+				<shared type="bool">true</shared>
+				<mime>image/png</mime>
+			</file>
+			<file>
+				<unique_id>views-48x48.png</unique_id>
+				<type>server</type>
+				<name>views-48x48.png</name>
+				<server_path>images/</server_path>
+				<object>cms_manager</object>
+				<shared type="bool">true</shared>
+				<mime>image/png</mime>
+			</file>
+			<file>
+				<unique_id>wordpad-file-48x48.png</unique_id>
+				<type>server</type>
+				<name>wordpad-file-48x48.png</name>
+				<server_path>images/</server_path>
+				<object>cms_manager</object>
+				<shared type="bool">true</shared>
+				<mime>image/png</mime>
+			</file>
+			<file>
+				<unique_id>800.css</unique_id>
+				<type>server</type>
+				<name>800.css</name>
+				<server_path>css/</server_path>
+				<object>cms_manager</object>
+				<shared type="bool">true</shared>
+				<mime>text/css</mime>
+			</file>
+			<file>
+				<unique_id>background.png</unique_id>
+				<type>server</type>
+				<name>background.png</name>
+				<server_path>images/</server_path>
+				<object>cms_manager</object>
+				<shared type="bool">true</shared>
+				<mime>image/png</mime>
+			</file>
+			<file>
+				<unique_id>background2.png</unique_id>
+				<type>server</type>
+				<name>background2.png</name>
+				<server_path>images/</server_path>
+				<object>cms_manager</object>
+				<shared type="bool">true</shared>
+				<mime>image/png</mime>
+			</file>
+			<file>
+				<unique_id>background3.png</unique_id>
+				<type>server</type>
+				<name>background3.png</name>
+				<server_path>images/</server_path>
+				<object>cms_manager</object>
+				<shared type="bool">true</shared>
+				<mime>image/png</mime>
+			</file>
+			<file>
+				<unique_id>background4.png</unique_id>
+				<type>server</type>
+				<name>background4.png</name>
+				<server_path>images/</server_path>
+				<object>cms_manager</object>
+				<shared type="bool">true</shared>
+				<mime>image/png</mime>
+			</file>
+			<file>
+				<unique_id>gradient2.png</unique_id>
+				<type>server</type>
+				<name>gradient2.png</name>
+				<server_path>images/</server_path>
+				<object>cms_manager</object>
+				<shared type="bool">true</shared>
+				<mime>image/png</mime>
+			</file>
+			<file>
+				<unique_id>gradient2a.png</unique_id>
+				<type>server</type>
+				<name>gradient2a.png</name>
+				<server_path>images/</server_path>
+				<object>cms_manager</object>
+				<shared type="bool">true</shared>
+				<mime>image/png</mime>
+			</file>
+			<file>
+				<unique_id>header.jpg</unique_id>
+				<type>server</type>
+				<name>header.jpg</name>
+				<server_path>images/</server_path>
+				<object>cms_manager</object>
+				<shared type="bool">true</shared>
+				<mime>image/jpeg</mime>
+			</file>
+			<file>
+				<unique_id>lock.png</unique_id>
+				<type>server</type>
+				<name>lock.png</name>
+				<server_path>images/</server_path>
+				<object>cms_manager</object>
+				<shared type="bool">true</shared>
+				<mime>image/png</mime>
+			</file>
+			<file>
+				<unique_id>mini_01.jpg</unique_id>
+				<type>server</type>
+				<name>mini_01.jpg</name>
+				<server_path>images/</server_path>
+				<object>cms_manager</object>
+				<shared type="bool">true</shared>
+				<mime>image/jpeg</mime>
+			</file>
+			<file>
+				<unique_id>osuab_crest_small.png</unique_id>
+				<type>server</type>
+				<name>osuab_crest_small.png</name>
+				<server_path>images/</server_path>
+				<object>cms_manager</object>
+				<shared type="bool">true</shared>
+				<mime>image/png</mime>
+			</file>
+			<file>
+				<unique_id>osumb_crest_small.png</unique_id>
+				<type>server</type>
+				<name>osumb_crest_small.png</name>
+				<server_path>images/</server_path>
+				<object>cms_manager</object>
+				<shared type="bool">true</shared>
+				<mime>image/png</mime>
+			</file>
+			<file>
+				<unique_id>post_left.png</unique_id>
+				<type>server</type>
+				<name>post_left.png</name>
+				<server_path>images/</server_path>
+				<object>cms_manager</object>
+				<shared type="bool">true</shared>
+				<mime>image/png</mime>
+			</file>
+			<file>
+				<unique_id>post_right.png</unique_id>
+				<type>server</type>
+				<name>post_right.png</name>
+				<server_path>images/</server_path>
+				<object>cms_manager</object>
+				<shared type="bool">true</shared>
+				<mime>image/png</mime>
+			</file>
+			<file>
+				<unique_id>random04.jpg</unique_id>
+				<type>server</type>
+				<name>random04.jpg</name>
+				<server_path>images/</server_path>
+				<object>cms_manager</object>
+				<shared type="bool">true</shared>
+				<mime>image/jpeg</mime>
+			</file>
+			<file>
+				<unique_id>small_vert_gradient.png</unique_id>
+				<type>server</type>
+				<name>small_vert_gradient.png</name>
+				<server_path>images/</server_path>
+				<object>cms_manager</object>
+				<shared type="bool">true</shared>
+				<mime>image/png</mime>
+			</file>
+			<file>
+				<unique_id>alias.png</unique_id>
+				<type>server</type>
+				<name>alias.png</name>
+				<server_path>images/</server_path>
+				<object>cms_manager</object>
+				<shared type="bool">true</shared>
+				<mime>image/png</mime>
+			</file>
+			<file>
+				<unique_id>attachment.png</unique_id>
+				<type>server</type>
+				<name>attachment.png</name>
+				<server_path>images/</server_path>
+				<object>cms_manager</object>
+				<shared type="bool">true</shared>
+				<mime>image/png</mime>
+			</file>
+			<file>
+				<unique_id>bookmark.png</unique_id>
+				<type>server</type>
+				<name>bookmark.png</name>
+				<server_path>images/</server_path>
+				<object>cms_manager</object>
+				<shared type="bool">true</shared>
+				<mime>image/png</mime>
+			</file>
+			<file>
+				<unique_id>circuit.png</unique_id>
+				<type>server</type>
+				<name>circuit.png</name>
+				<server_path>images/</server_path>
+				<object>cms_manager</object>
+				<shared type="bool">true</shared>
+				<mime>image/png</mime>
+			</file>
+			<file>
+				<unique_id>fuse.png</unique_id>
+				<type>server</type>
+				<name>fuse.png</name>
+				<server_path>images/</server_path>
+				<object>cms_manager</object>
+				<shared type="bool">true</shared>
+				<mime>image/png</mime>
+			</file>
+			<file>
+				<unique_id>link.png</unique_id>
+				<type>server</type>
+				<name>link.png</name>
+				<server_path>images/</server_path>
+				<object>cms_manager</object>
+				<shared type="bool">true</shared>
+				<mime>image/png</mime>
+			</file>
+			<file>
+				<unique_id>locked.png</unique_id>
+				<type>server</type>
+				<name>locked.png</name>
+				<server_path>images/</server_path>
+				<object>cms_manager</object>
+				<shared type="bool">true</shared>
+				<mime>image/png</mime>
+			</file>
+			<file>
+				<unique_id>permissions.png</unique_id>
+				<type>server</type>
+				<name>permissions.png</name>
+				<server_path>images/</server_path>
+				<object>cms_manager</object>
+				<shared type="bool">true</shared>
+				<mime>image/png</mime>
+			</file>
+			<file>
+				<unique_id>thread.png</unique_id>
+				<type>server</type>
+				<name>thread.png</name>
+				<server_path>images/</server_path>
+				<object>cms_manager</object>
+				<shared type="bool">true</shared>
+				<mime>image/png</mime>
+			</file>
+			<file>
+				<unique_id>indicator.gif</unique_id>
+				<type>server</type>
+				<name>indicator.gif</name>
+				<server_path>images/</server_path>
+				<object>cms_manager</object>
+				<shared type="bool">true</shared>
+				<mime>image/gif</mime>
+			</file>
+			<file>
+				<unique_id>lightbulb.png</unique_id>
+				<type>server</type>
+				<name>lightbulb.png</name>
+				<server_path>images/</server_path>
+				<object>cms_manager</object>
+				<shared type="bool">true</shared>
+				<mime>image/png</mime>
+			</file>
+			<file>
+				<unique_id>close-32x64.png</unique_id>
+				<type>server</type>
+				<name>close-32x64.png</name>
+				<server_path>images/</server_path>
+				<object>cms_manager</object>
+				<shared type="bool">true</shared>
+				<mime>image/png</mime>
+			</file>
+			<file>
+				<unique_id>ema.js</unique_id>
+				<type>sscript</type>
+				<name>ema.js</name>
+				<server_path>javascript/</server_path>
+				<description>ema global javascript library</description>
+				<object>cms_manager</object>
+				<shared type="bool">true</shared>
+				<mime>text/javascript</mime>
+			</file>
+			<file>
+				<unique_id>target-48x48.png</unique_id>
+				<type>server</type>
+				<name>target-48x48.png</name>
+				<server_path>images/</server_path>
+				<object>cms_manager</object>
+				<shared type="bool">true</shared>
+				<mime>image/png</mime>
+			</file>
+			<file>
+				<unique_id>window-close.png</unique_id>
+				<type>server</type>
+				<name>window-close.png</name>
+				<server_path>images/</server_path>
+				<object>cms_manager</object>
+				<shared type="bool">true</shared>
+				<mime>image/png</mime>
+			</file>
+			<file>
+				<unique_id>window-title-bar.png</unique_id>
+				<type>server</type>
+				<name>window-title-bar.png</name>
+				<server_path>images/</server_path>
+				<object>cms_manager</object>
+				<shared type="bool">true</shared>
+				<mime>image/png</mime>
+			</file>
+			<file>
+				<unique_id>modules.js</unique_id>
+				<type>sscript</type>
+				<name>modules.js</name>
+				<server_path>javascript/</server_path>
+				<description>ema modules javascript library</description>
+				<object>cms_manager</object>
+				<shared type="bool">true</shared>
+				<mime>text/javascript</mime>
+			</file>
+			<file>
+				<unique_id>arrow_up-18x18.png</unique_id>
+				<type>server</type>
+				<name>arrow_up-18x18.png</name>
+				<server_path>images/</server_path>
+				<object>cms_manager</object>
+				<shared type="bool">true</shared>
+				<mime>image/png</mime>
+			</file>
+			<file>
+				<unique_id>info-16x16.png</unique_id>
+				<type>server</type>
+				<name>info-16x16.png</name>
+				<server_path>images/</server_path>
+				<object>cms_manager</object>
+				<shared type="bool">true</shared>
+				<mime>image/png</mime>
+			</file>
+		</files_index>
+
+	</data>
+</cms-extension>

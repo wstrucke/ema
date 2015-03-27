@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+	<db_alter>
+		<engine:0.1.0 next="0.1.1">
+			<modules>
+				<add>
+					<c:1 type="string" length="10" after="module_version">schema_version</c:1>
+				</add>
+			</modules>
+		</engine:0.1.0>
+		<engine:0.1.1 next="0.1.2">
+			<modules>
+				<add>
+					<c:1 type="integer" after="schema_version">load_order</c:1>
+					<c:2 type="string" length="6" after="name">type</c:2>
+				</add>
+			</modules>
+		</engine:0.1.1>
+		<engine:0.1.2 next="0.1.3">
+			<modules>
+				<add>
+					<c:1 type="string" after="load_order" length="50">provides</c:1>
+				</add>
+			</modules>
+		</engine:0.1.2>
+		<engine:0.1.5 next="0.2.0">
+			<modules>
+				<add>
+					<c:1 type="string" after="requires" length="254">filament_array</c:1>
+					<c:2 type="string" after="filament_array" length="254">fuse_array</c:2>
+				</add>
+				<drop>
+					<c:1>embeddable_functions</c:1>
+					<c:2>interactive_functions</c:2>
+				</drop>
+			</modules>
+		</engine:0.1.5>
+		<engine:0.2.0 next="0.2.1">
+			<modules>
+				<alter>
+					<c:1 type="string" length="4096">fuse_array</c:1>
+				</alter>
+			</modules>
+		</engine:0.2.0>
+		<engine:0.2.1 next="0.2.2">
+			<modules>
+				<add>
+					<c:1 type="bool" notnull="true" default="false">refresh</c:1>
+				</add>
+			</modules>
+		</engine:0.2.1>
+		<engine:0.2.2 next="0.2.3">
+			<modules>
+				<modify>
+					<fuse_array type="clob"/>
+				</modify>
+			</modules>
+		</engine:0.2.2>
+		<engine:0.2.3 next="0.2.4">
+			<drop>
+				<modules/>
+			</drop>
+			<create>
+				<modules>
+					<id type="integer" unsigned="true" primary="true" unique="true" autoinc="true"/>
+					<name type="string" length="50" notnull="true"/>
+					<module type="string" length="6" notnull="true"/>
+					<enabled type="bool" notnull="true">false</enabled>
+					<module_version type="string" length="10" notnull="true"/>
+					<schema_version type="string" length="10"/>
+					<load_order type="integer" notnull="true">0</load_order>
+					<provides type="string" length="50" notnull="true"/>
+					<type type="string" length="50" notnull="true"/>
+					<path type="string" length="254" notnull="true"/>
+					<requires type="string" length="254"/>
+					<filament_array type="string" length="512"/>
+					<fuse_array type="text"/>
+					<arguments type="string" length="254"/>
+					<gears type="bool" notnull="true">false</gears>
+					<refresh type="bool" notnull="true">false</refresh>
+				</modules>
+			</create>
+		</engine:0.2.3>
+		<engine:0.2.4 next="0.2.5">
+			<modules>
+				<change>
+					<module_version type="string" length="20" notnull="true"/>
+					<schema_version type="string" length="20" notnull="true">0</schema_version>
+				</change>
+			</modules>
+		</engine:0.2.4>
+		<engine:0.2.5 next="0.2.6">
+			<insert>
+				<modules>
+					<row>
+						<name>accounts_db</name>
+						<module>engine</module>
+						<enabled type="bool">true</enabled>
+						<module_version type="integer">0</module_version>
+						<load_order type="integer">7</load_order>
+						<provides>accounts</provides>
+						<type>db</type>
+						<path>./built-in/accounts_db/accounts_db.class.php</path>
+						<refresh type="bool">true</refresh>
+					</row>
+				</modules>
+			</insert>
+			<update>
+				<modules><match><name>security_basic</name></match><set><load_order type="integer">8</load_order><refresh type="bool">true</refresh></set></modules>
+				<modules><match><name>forms_basic</name></match><set><load_order type="integer">9</load_order></set></modules>
+			</update>
+		</engine:0.2.5>
+	</db_alter>
+</xml>

@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Buckeye Invitational Pre-Registration Data</title>
+<style type="text/css" media="all">
+
+	* { margin: 0px; padding: 0px; }
+	body { font-family: Times, "Times New Roman", serif; font-size: 12pt; }
+	ul { list-style: none; margin: 0px 30px 50px 15px; width: 325px; }
+	hr { /* border: none; clear: both; color: #ffffff; margin: 0px; */ }
+	
+	div#page {
+		/* Restrict Data to fit on 8.5" x 11" letter */
+		position: relative;
+		width: 650px;
+		height: 775px;
+		padding: 0px 8px;
+		/* border: 2px solid #cccccc; */
+		}
+	
+	div#page img { /* margin: -5px 0px 20px; */ }
+	div#page div#header { height: 70px; margin-bottom: 10px; font-family: "Times New Roman", Times, serif; text-align: right; }
+	div#page div#header a { text-decoration: none; }
+	div#page img { float: left; }
+	div#page div#header hr { border-top: 1px solid #000; padding-left: 100px; width: 560px; margin: 3px 0px; }
+	div#page div#header div#top { font-weight: bold; font-size: 11pt; padding-top: 12px; }
+	div#page div#header div#bottom {  }
+	
+	li { margin-left: 10px; line-height: 2em; }
+	li.subject { font-weight: bold; margin-left: 0px; border-bottom: 1px solid #cccccc; margin-bottom: 10px; }
+	
+	ul.formatted { padding-left: 65px; width: 400px; clear: left; }
+	ul.formatted li.subject { margin-left: -65px; }
+	ul.formatted li div { width: 80px; font-weight: bold; text-align: left; float: left; margin-left: -65px; }
+	
+	div#footer { position: absolute; bottom: 0px; left: 35px; }
+
+</style>
+<style type="text/css" media="print">
+	body { font-family: "Times New Roman", Times, serif; font-size: 12pt; }
+</style>
+</head>
+<body>
+<div id="page">
+	<!-- Begin Header Image -->
+	
+	<img src="http://tbdbitl.osu.edu/?action=dl&amp;fid=138" width="74" height="74" alt="The Ohio State University" />
+	<div id="header">
+		<div id="top">OSU Marching and Athletic Bands</div>
+		<hr />#year# Buckeye Invitational Pre-Registration<br />#date#
+	</div>
+	
+	<!-- End Header Image -->
+	
+	<!-- Begin Form Results -->
+	
+	<ul class="formatted">
+		<li class="subject">Registration Information</li>
+		<li><div>School:</div>#school#</li>
+		<li><div>Director:</div>#director#</li>
+		<li><div>&nbsp;</div><a href="mailto:#email#">#email#</a></li>
+		<li><div>Phone:</div>#phone#</li>
+	</ul>
+	
+	<ul>
+		<li class="subject">Information</li>
+		<li>There are <strong>#number#</strong> members in the band and <strong><em>#auxiliary#</em></strong> of them are auxiliary.</li>
+		<li>This is a <strong>#class#</strong> class band.</li>
+	</ul>
+	
+	<div id="footer">
+		Sent at #time# from #ip#<br />
+		#agent#
+	</div>
+	
+	<!-- End Form Results -->
+	
+	<!-- <hr /> -->
+
+</div>
+</body>
+</html>

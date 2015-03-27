@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<cms-extension version="1.0">
+	<title>OSU Marching & Athletic Bands</title>
+	<object_name>osu_athleticbands</object_name>
+	<version>1.0.0</version>
+	<cms_version_minimum>2.0</cms_version_minimum>
+	<cms_version_maximum/>
+	<object_file>osu_athleticbands</object_file>
+	<author>William Strucke</author>
+	<email>wstrucke@gmail.com</email>
+	<url>http://home2.arts.ohio-state.edu/~strucke1</url>
+	<description/>
+	<requires>
+		<db version_minimum="1.1"/>
+		<security/>
+		<accounts_db/>
+		<accounts_shib/>
+	</requires>
+	<provides>osu</provides>
+	<type>athleticbands</type>
+	<allow_export>false</allow_export>
+	<gears>false</gears>
+	<schema version="0.1.0">
+	
+		<osu_people>
+			<namen type="string" primary="true" notnull="true" length="55" />
+			<mobile type="string" length="14" />
+			<home_address type="string" length="50" />
+			<home_address_2 type="string" length="50" />
+			<home_city type="string" length="50" />
+			<home_state type="string" length="20" />
+			<home_zip type="string" length="9" />
+			<home_county type="string" length="20" />
+			<home_phone type="string" length="14" />
+			<campus_address type="string" length="50" />
+			<campus_address_2 type="string" length="50" />
+			<campus_city type="string" length="50" />
+			<campus_state type="string" length="20" />
+			<campus_zip type="string" length="9" />
+			<campus_phone type="string" length="14" />
+			<allergies type="string" length="50" />
+			<vegeterian type="bool" notnull="true">0</vegeterian>
+			<gender type="string" length="1" />
+			<high_school type="string" length="50" />
+			<hs_graduation_year type="string" length="4" />
+			<year_in_band type="integer" />
+			<im_name type="string" length="50" />
+			<im_service type="string" length="50" />
+		</osu_people>
+		
+		<osu_mband>
+			<namen type="string" primary="true" notnull="true" length="55" />
+			<first type="string" length="50" />
+			<last type="string" length="70" />
+			<email type="string" length="128" />
+			<instrument type="string" length="20" />
+			<part type="string" length="20" />
+			<row type="string" length="1" />
+			<number type="integer" />
+			<year_in_band type="integer" />
+			<squad_leader type="bool" notnull="true">0</squad_leader>
+		</osu_mband>
+		
+		<osu_aband>
+			<namen type="string" primary="true" notnull="true" length="55" />
+			<first type="string" length="50" />
+			<last type="string" length="70" />
+			<email type="string" length="128" />
+			<instrument type="string" length="20" />
+			<part type="string" length="20" />
+			<row type="string" length="1" />
+			<number type="integer" />
+			<grouping type="string" length="10" />
+			<section_leader type="bool" notnull="true">0</section_leader>
+		</osu_aband>
+		
+		<osu_staff>
+			<namen type="string" primary="true" notnull="true" length="55" />
+			<first type="string" length="50" />
+			<last type="string" length="70" />
+			<email type="string" length="128" />
+			<position type="string" length="50" />
+			<year_on_staff type="integer" />
+		</osu_staff>
+	
+	</schema>
+	
+</cms-extension>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<db_alter>
+
+	<wysiwyg_ckeditor:0.0.1 next="0.0.2">
+		<update>
+			<files_index>
+				<match><unique_id>wysiwyg_ckeditor.js</unique_id></match>
+				<set><type>sscript</type></set>
+			</files_index>
+		</update>
+	</wysiwyg_ckeditor:0.0.1>
+
+</db_alter>

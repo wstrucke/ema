@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<cms-extension version="1.0">
+	<title>News Module</title>
+	<object_name>news_basic</object_name>
+	<version>1.0.0</version>
+	<cms_version_minimum>2.0</cms_version_minimum>
+	<cms_version_maximum/>
+	<object_file>news_basic</object_file>
+	<author>William Strucke</author>
+	<email>wstrucke@gmail.com</email>
+	<url>http://home2.arts.ohio-state.edu/~strucke1</url>
+	<description/>
+	<requires>
+		<db version_minimum="1.1"/>
+		<cms/>
+	</requires>
+	<provides>news</provides>
+	<type>basic</type>
+	<allow_export>false</allow_export>
+	<arguments/>
+	<gears>false</gears>
+	<fuse />
+	<filament enabled="true">
+		<breaking_news title="News - Output Breaking News" />
+		<news title="News - Output Latest News" />
+	</filament>
+	<schema version="0.0.1">
+		
+		<news>
+			<!-- id -->
+			<id type="integer" unsigned="true" primary="true" unique="true" autoinc="true" />
+		</news>
+		
+	</schema>
+	
+	<data>
+		
+		<files_index>
+			<file>
+				<unique_id>1291844899_close.png</unique_id>
+				<type>server</type>
+				<name>1291844899_close.png</name>
+				<server_path>images/</server_path>
+				<object>news_basic</object>
+				<shared type="bool">true</shared>
+				<mime>image/png</mime>
+			</file>
+		</files_index>
+		
+	</data>
+	
+</cms-extension>

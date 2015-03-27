@@ -1,0 +1,604 @@
+/* CSS Document */
+
+/*********************************************
+ * Style Sheet for The Ohio State University 
+ * Marching and Athletic Bands
+ * tbdbitl.osu.edu
+ * -------------------------------------------
+ * Design and Development by
+ * William Strucke [wstrucke@gmail.com]
+ * Version 3-B.1, 2007.02.12
+ *
+ * Changes to STRUCTURE from Version 3.0
+ *	- moved OSU bar outside (above) container
+ *
+ */
+ 
+	* 
+	{	
+		margin: 0px;
+		padding: 0px;
+	}
+	
+	body
+	{
+		/* Reduce the overall default font size on our site */
+		font-size: 0.89em;
+		/* Set the global background color */
+		color: #000;
+		background: #660000 url('<?php echo url('download/background4.png'); ?>') repeat-y 0 0;
+	}
+		
+	a
+	{
+		color: #990000;
+		background-color: inherit;
+		text-decoration: none;
+	}
+	
+	a:hover
+	{
+		border-bottom: 1px dotted #cc0000;
+	}
+	
+	acronym
+	{
+		cursor: help;
+	}
+	
+	
+/*
+ * Modify the OSU Masthead
+ *
+ */
+
+	div#osu-Navbar
+	{
+		width: 950px;	/* was 800 */
+		margin: 0 auto;
+	/*width: 100%;*/
+		font-size: 1em;
+		z-index: 2;
+	}
+	
+	div#osu-Navbar a:hover
+	{
+		border: 0;
+	}
+	
+	div.osu-hr
+	{
+		margin-top: -200px;
+		border-top: 200px solid #c9c9c9;
+		border-bottom: 1px solid #fff;
+		z-index: 1;
+	}
+ 
+ 
+/*
+ * Central Content Container
+ *
+ */
+ 
+	div#container
+	{
+		position: relative;
+		width: 950px;	/* was 800 */
+		margin: 0 auto 15px;
+		color: #000;
+		background-color: #fff;
+	}
+	
+
+/*
+ * Page Header
+ *
+ */
+	
+	div#header
+	{
+		position: relative;
+		padding: 95px 0 0;
+		/* development /	background-color: #FFCCFF; /* development */
+		background: #fff url('<?php echo url('download/header.jpg'); ?>') top left no-repeat;
+	}
+	
+	div#header div#login
+	{
+		position: absolute;
+		top: 2px;
+		right: 5px;
+		padding: 4px 5px 3px;
+		border: 1px solid #fff;
+		color: #fff;
+		background-color: #000;
+		font-size: 0.89em;
+		font-style: italic;
+		font-weight: bold;
+		font-family: Verdana, Arial, Helvetica, sans-serif;
+		/* Opacity Settings (IE, Mozilla, Safari) */
+		filter: alpha (opacity=75);
+		-moz-opacity: .75;
+		-khtml-opacity: .75;
+	}
+	
+	div#header div#login a
+	{
+		padding: 2px 20px 0 0;
+		color: inherit;
+		background: url('<?php echo url('download/lock.png'); ?>') no-repeat top right;
+	}
+	
+	div#header div#login a:hover
+	{
+		border: 0px;
+	}
+	
+	
+/*
+ * Primary Navigation Bar
+ *
+ */
+	
+	ul#nav_bar
+	{
+		height: 1.6em;
+		padding: 0 18px;
+		font-family: Arial, Helvetica, sans-serif;
+		background: #cc0000 url('<?php echo url('download/gradient2.png'); ?>') repeat-x 0 0;
+		list-style-type: none;
+	}
+	
+	ul#nav_bar li
+	{
+		float: left;
+		margin-left: -1px;
+		padding: .2em 18px;
+		border-left: 1px solid #aa0000;
+		border-right: 1px solid #aa0000;
+	}
+		
+	ul#nav_bar li a
+	{
+		color: #e9e9e9;
+		background: inherit;
+	}
+	
+	ul#nav_bar li a:hover
+	{
+		margin: 0 -18px;
+		padding: 0 18px;
+		color: #fff;
+		background: #cc0000 url('<?php echo url('download/gradient2a.png'); ?>') repeat-x 0 0;
+		border-bottom: 0;
+		white-space: nowrap;
+	}
+	
+	ul#nav_bar li.active a
+	{
+		color: #fff;
+		font-weight: bold;
+	}
+	
+	ul#nav_bar li.active a:hover
+	{
+		border-bottom: 0;
+	}
+	
+	
+/*
+ * Section (sub) Navigation List
+ *
+ */
+	
+	ul#section_navigation
+	{
+		position: absolute;
+	/*top: 209px;
+		left: 10px;*/
+		top: 10px;	right: 10px;
+		width: 180px;
+		height: 190px;
+		padding-left: 5px;
+		line-height: 1.4em;
+		white-space: nowrap;
+		list-style-type: none;
+		border-left: 2px solid #eee;
+		font-size: 0.89em;
+	}
+	
+	ul#section_navigation li
+	{
+		margin-left: 20px;
+		color: #000;
+		background-color: 
+	}
+	
+	ul#section_navigation li a
+	{
+		display: block;
+		padding: 2px 0 ;
+		color: #666;
+		background-color: inherit;
+		border-bottom: 1px solid #e6e6e6;
+	}
+	
+	ul#section_navigation li a:hover
+	{
+		padding-left: 20px;
+		margin: -1px 0 0 -20px;
+		color: #000;
+		background-color: #f3f3f3;
+		border-top: 1px solid #ddd;
+		border-bottom: 1px solid #ddd;
+	}
+	
+	ul#section_navigation li.active
+	{
+		list-style-type: circle;
+	}
+	
+	ul#section_navigation li.active a
+	{
+		color: #880000;
+		border-bottom: 1px solid #ddd;
+	}
+	
+	
+/*
+ * Central (Middle) Content Container
+ *
+ */
+
+	div#page
+	{
+		position: relative;
+		padding: 10px;
+		font-family: Verdana, Arial, Helvetica, sans-serif;
+		background: url('<?php echo url('download/small_vert_gradient.png'); ?>') top left repeat-x;
+	}
+	
+	
+/*
+ * Central Container Text Formats
+ *
+ */
+	
+	div#page h1
+	{
+		font-size: 1em;
+		color: #990000;
+		margin-bottom: 10px;
+		padding-bottom: 2px;
+		border-bottom: 1px solid #660000;
+	}
+	
+	div#page p
+	{
+		text-indent: 20px;
+		font-size: 0.89em;
+		line-height: 1.4em;
+		margin-bottom: 10px;
+	}
+	
+	
+/*
+ * Generic Box Element in Central Container
+ *
+ */
+ 
+	div#contact
+	{
+		position: absolute;
+		top: 231px;
+		left: 10px;
+		width: 184px;
+		height: 138px;
+		line-height: 1.4em;
+		border: 1px solid #ccc;
+		padding: 3px;
+		font-size: 0.89em;
+		text-align: center;
+	}
+	
+	div#contact span
+	{
+		display: block;
+		background-color: #eee;
+		font-weight: bold;
+		border-bottom: 1px solid #ccc;
+		margin: -3px -3px 5px -3px;
+		padding: 1px 5px 0;
+		text-align: left;
+	}
+	
+	div#contact span a
+	{
+		position: absolute;
+		right: 2px;
+		color: #999;
+		font-style: italic;
+		font-weight: normal;
+		border-left: 1px solid #ccc;
+		padding: 0 5px 0 10px;
+	}
+	
+	div#contact span a:hover
+	{
+		color: #990000;
+		border: 0px;
+		border-left: 1px solid #ccc;
+	}
+	
+	div#contact p
+	{
+		line-height: inherit;
+		text-indent: 0px;
+		margin: 0px;
+		font-size: inherit;
+	}
+	
+	
+/*
+ * Generic Box Sub-Types in Central Container
+ *
+ */
+ 
+	div#page div.left
+	{
+		float: left;
+	}
+	
+	div#page div.right
+	{
+		float: right;
+	}
+	
+
+/*
+ * 3/4 box in content to except information
+ *
+ */
+	
+	div.insert
+	{
+		width: 405px; /* was 255 */
+		height: 180px;
+		border: 1px solid #ccc;
+		padding: 5px 5px 5px 305px;
+		overflow: hidden;
+	}
+	
+	div.insert img
+	{
+		float: left;
+		margin: -5px 0 -5px -305px;
+	}
+	
+	
+/*
+ * Container for the Calendar Week Object
+ *
+ */
+
+	div#page div#calendarWeekContainer
+	{
+		position: relative;
+		margin: 0px 0 10px 200px;
+		width: 730px; /* was 580 */
+		height: 170px;
+		/* development /	background-color: #FFFFCC; /* development */	
+	}
+	
+	div#page div#calendarWeekContainer a:hover
+	{
+		border: 0px;
+	}
+	
+	div#page div#calendarWeekContainer ul
+	{
+		/* Put the calendar in front of the mask */
+		z-index: 2;
+	}
+	
+	div#page div#calendarWeekContainer div#calendarWeekMask
+	{
+		/* Mask to cover the header image behind the week text */
+		position: absolute;
+		top: 28px;
+		left: -1px;
+		width: 400px;
+		height: 60px;
+		background-color: #fff;
+		/* Move the mask to the background */
+		z-index: 1;
+	}
+	
+	ul.calendar2 li.dayHeader
+	{
+		background: #ddd url('<?php echo url('download/calendar_week_gradient.png'); ?>') repeat-x 0 0;
+	}
+	
+
+/*
+ * Upper Left and Right corner image containers
+ *
+ */
+ 
+	div#container div#post_left
+	{
+		position: absolute;
+		top: 0px;
+		left: -171px;
+		width: 170px;
+		height: 170px;
+		background: url('<?php echo url('download/post_left.png'); ?>') top left no-repeat;
+	}	
+	
+	div#container div#post_right
+	{
+		position: absolute;
+		top: 0px;
+		right: -171px;
+		width: 170px;
+		height: 170px;
+		background: url('<?php echo url('download/post_right.png'); ?>') top left no-repeat;
+	}
+	
+	
+/*
+ * News Headlines on the Front Page
+ *
+ */
+ 
+	ul#headlines
+	{
+		margin: 20px 0 10px;
+		list-style-type: none;
+		font-size: 0.89em;
+	}
+	
+	ul#headlines li
+	{
+		width: 550px; /* was 400 */
+		height: 1.3em;
+		margin-bottom: 5px;
+		padding: .15em 4px .15em 160px;
+		border: 1px solid #ccc;
+		background-color: #eee;
+		white-space: nowrap;
+		overflow: hidden;
+	}
+	
+	ul#headlines li.head
+	{
+		width: 720px; /* was 570 */
+		padding: 1px 4px 2px;
+		font-size: 1.3em;
+		font-style: italic;
+		border: none;
+		border-bottom: 2px solid #ccc;
+		background-color: #fff;
+	}
+	
+	ul#headlines li span
+	{
+		display: block;
+		float: left;
+		width: 150px;
+		margin-right: 5px;
+		margin-left: -148px;
+		border-right: 1px solid #ccc;
+		font-weight: bold;
+	}
+	
+	ul#headlines li a.fxButton
+	{
+		float: right;
+		margin-right: 5px;
+	}
+	
+	ul#headlines li div
+	{
+		width: 685px; /* was 535 */
+		margin: 5px 0 0 -148px;
+		padding: 5px 5px 0;
+		color: #000;
+		background-color: #f3f3f3;
+		border: 1px dotted #ddd;
+		border-top: 1px solid #ccc;
+		white-space: normal;
+	}
+	
+	
+/*
+ * Advertisment Space
+ *
+ */
+ 
+	div.advertisement
+	{
+		float: right;
+		width: 170px;
+		height: 140px;
+		margin: 10px 0;
+		padding: 5px;
+		border: 2px solid #ddd;
+		text-align: center;
+		font-size: 0.89em;
+		overflow: hidden;
+	}
+	
+	div.advertisement h2
+	{
+		color: #990000;
+		background-color: #eee;
+		font-size: 1em;
+		margin-bottom: 10px;
+		padding: 2px 0;
+	}
+	
+	
+/*
+ * Footer Element
+ *
+ */
+ 
+	div#footer
+	{
+		position: relative;
+		clear: both;
+		height: 45px;
+		margin: 20px 0 4em;
+		padding: 13px 0;
+		text-align: center;
+		font-size: 0.79em;
+		line-height: 1.3em;
+		color: #777;
+		background-color: #fff;
+		font-family: Verdana, Arial, Helvetica, sans-serif;
+		border-top: 1px solid #ccc;
+		border-bottom: 1px solid #ccc;
+	}
+	
+	div#footer a
+	{
+		color: #888;
+		background-color: inherit;
+		border-bottom: 1px dotted #888;
+	}
+	
+	div#footer a:hover
+	{
+		color: #990000;
+		background-color: inherit;
+	}
+	
+	div#footer img.left
+	{
+		position: absolute;
+		top: 0px;
+		left: 5px;
+	}
+	
+	div#footer img.right
+	{
+		position: absolute;
+		top: 0px;
+		right: 5px;
+	}
+	
+	div#footer blockquote
+	{
+		position: absolute;
+		bottom: -3em;
+		width: 950px; /* was 800 */
+		margin: 0;
+		padding: 1em 0;
+		text-align: center;
+		font-size: 1.3em;
+		font-style: italic;
+		font-family: Georgia, "Times New Roman", Times, serif;
+		color: #333;
+		background-color: #fff;
+	}

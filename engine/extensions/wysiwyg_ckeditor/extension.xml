@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<cms-extension version="1.0">
+	<title>CKEditor</title>
+	<object_name>wysiwyg_ckeditor</object_name>
+	<version>1.0.1</version>
+	<cms_version_minimum>2.0</cms_version_minimum>
+	<cms_version_maximum/>
+	<object_file>wysiwyg_ckeditor</object_file>
+	<author>Frederico Caldeira Knabben (CKSource.com)</author>
+	<email>info@cksource.com</email>
+	<url>http://ckeditor.com/</url>
+	<description>
+		CKEditor is a text editor to be used inside web pages. It's a WYSIWYG editor, which means that the text being edited on it looks as similar as possible to the results users have when publishing it. It brings to the web common editing features found on desktop editing applications like Microsoft Word and OpenOffice.
+	</description>
+	<requires>
+		<cms_manager/>
+	</requires>
+	<provides>wysiwyg</provides>
+	<type>ckeditor</type>
+	<interactive>false</interactive>
+	<allow_embed>false</allow_embed>
+	<allow_export>false</allow_export>
+	<arguments/>
+	<gears>true</gears>
+	<schema version="0.0.2" />
+	<data>
+		<files_index>
+			<file>
+				<unique_id>wysiwyg_ckeditor.js</unique_id>
+				<type>sscript</type>
+				<name>wysiwyg_ckeditor.js</name>
+				<server_path>javascript/</server_path>
+				<object>wysiwyg_ckeditor</object>
+				<shared type="bool">true</shared>
+				<mime>text/javascript</mime>
+			</file>
+		</files_index>
+	</data>
+</cms-extension>

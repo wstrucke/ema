@@ -1,0 +1,54 @@
+<?php
+ /* Name
+  * Copyright [Date] [Name] [E-mail]
+  * All Rights Reserved
+  *
+  * Revision 0.0.0, [Date]
+  * [Name], [E-mail]
+  *
+  */
+  
+class [provides_type] extends standard_extension
+{
+  # public / directly accessible variables
+  public $var;                     // (type) description
+  
+  # variables to be shared on demand
+  protected $var2;                 // (type) description
+  
+  # internal variables
+  protected $var3;                 // (type) description
+  
+  # database version
+  public $schema_version='0.0.1';  // the schema version to match the registered schema
+  
+  protected $_debug_prefix = '';   // object debug output prefix
+  public $_name = '';              // the module name
+  public $_version = '';           // the loaded object's version string
+  
+  /* code */
+  
+  public function __clone()
+  /* handle clone processes
+   *
+   */
+  {
+  }
+  
+  public function &__get($item)
+  {
+  }
+
+  public function __set($field, $value)
+  {
+  }
+  
+  public function _construct()
+  /* initialize the object
+   *
+   */
+  {
+  }
+  
+}
+?>

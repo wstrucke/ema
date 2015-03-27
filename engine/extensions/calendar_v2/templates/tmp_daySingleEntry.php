@@ -1,0 +1,1 @@
+<h2>#EV_CAPTION#</h2><span class="details">#EV_DETAILS#</span><span class="description">#EV_DESCRIPTION#</span><span class="group" title="Event Grouping">#EV_GROUP#</span><span class="#EDIT_CLASS#">#EDIT_LINK#</span>

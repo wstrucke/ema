@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<db_alter>
+
+	<file_manager:0.2 next="0.2.1">
+		<insert>
+			
+			<files_index>
+				<file>
+					<unique_id>file_manager.js</unique_id>
+					<type>sscript</type>
+					<name>file_manager.js.php</name>
+					<description>file manager javascript</description>
+					<object>file_manager</object>
+					<shared type="bool">true</shared>
+					<mime>text/javascript</mime>
+				</file>
+			</files_index>
+			
+		</insert>
+	</file_manager:0.2>
+	
+	<file_manager:0.2.1 next="0.2.2">
+		<files_index><add><server_path after="path" type="string" length="254"></server_path></add></files_index>
+	</file_manager:0.2.1>
+	
+	<file_manager:0.2.2 next="0.2.3">
+		<files_index><add><uploaded after="description" type="bool" notnull="true">false</uploaded></add></files_index>
+	</file_manager:0.2.2>
+	
+	<file_manager:0.2.3 next="0.2.4">
+		<files_index><change><id type="integer" primary="true" unsigned="true" autoinc="true"></id></change></files_index>
+	</file_manager:0.2.3>
+	
+	<file_manager:0.2.4 next="0.2.5">
+		<create>
+			<file_alias>
+				<id type="integer" primary="true" unsigned="true" autoinc="true"></id>
+				<file_id type="integer" unsigned="true" notnull="true" />
+				<alias type="string" length="255" notnull="true" unique="true" />
+			</file_alias>
+		</create>
+	</file_manager:0.2.4>
+
+</db_alter>

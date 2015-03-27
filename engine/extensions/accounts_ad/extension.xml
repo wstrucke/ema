@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<cms-extension version="1.0">
+	<title>Accounts-AD (Authentication)</title>
+	<object_name>accounts_ad</object_name>
+	<version>2.0.0</version>
+	<cms_version_minimum>2.0</cms_version_minimum>
+	<cms_version_maximum/>
+	<object_file>accounts_ad</object_file>
+	<author>William Strucke</author>
+	<email>wstrucke@gmail.com</email>
+	<url>http://home2.arts.ohio-state.edu/~strucke1</url>
+	<description/>
+	<requires/>
+	<provides>accounts</provides>
+	<type>ad</type>
+	<allow_export>false</allow_export>
+</cms-extension>

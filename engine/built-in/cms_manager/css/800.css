@@ -1,0 +1,44 @@
+/* Style Sheet */
+
+/* Adjust the site content for 800x600 resolution */
+
+
+	#osu-masthead
+	{
+		font-size: .89em;
+	}
+	
+	div#container
+	{
+		width: 800px;
+	}
+	
+	div.insert
+	{
+		width: 255px;
+	}
+	
+	div#page div#calendarWeekContainer
+	{
+		width: 580px;
+	}
+	
+	ul#headlines li
+	{
+		width: 400px;
+	}
+	
+	ul#headlines li.head
+	{
+		width: 570px;
+	}
+	
+	ul#headlines li div
+	{
+		width: 535px;
+	}
+	
+	div#footer blockquote
+	{
+		width: 800px;
+	}

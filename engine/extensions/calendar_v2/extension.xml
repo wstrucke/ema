@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<cms-extension version="1.0">
+	<title>ema calendar version 2</title>
+	<object_name>calendar_v2</object_name>
+	<version>2.1.0</version>
+	<cms_version_minimum>2.0</cms_version_minimum>
+	<cms_version_maximum/>
+	<object_file>calendar_v2</object_file>
+	<author>William Strucke</author>
+	<email>wstrucke@gmail.com</email>
+	<url>http://home2.arts.ohio-state.edu/~strucke1</url>
+	<description/>
+	<requires>
+		<db version_minimum="1.1"/>
+		<file_manager/>
+		<cms_manager/>
+		<security/>
+	</requires>
+	<provides>calendar</provides>
+	<type>v2</type>
+	<interactive>true</interactive>
+	<allow_embed>true</allow_embed>
+	<allow_export>false</allow_export>
+	<arguments/>
+	<gears>false</gears>
+	<filament enabled="true">
+		<outputCompact title="Calendar - Output Compact Month" />
+		<outputDay title="Calendar - Output One Day" />
+		<outputMonth title="Calendar - Output One Month" />
+		<outputSevenDays title="Calendar - Output Seven Days" />
+		<outputTwoWeeks title="Calendar - Output Two Weeks" />
+		<outputWeek title="Calendar - Output One Week" />
+	</filament>
+	<schema version="0.1.8">
+		<calendar_settings>
+			<!-- site id -->
+			<id type="integer" unsigned="true" primary="true" unique="true" autoinc="true"></id>
+			<!-- site name or description (may be used to match site during extension loading, tbd) -->
+			<site type="string" length="255"></site>
+			<!-- absolute or relative URL to the calendar css file -->
+			<css_url type="string" length="255"></css_url>
+			<!-- absolute or relative URL to the calendar javascript file -->
+			<js_url type="string" length="255"></js_url>
+			<!-- absolute or relative URL to the calendar javascript effects library -->
+			<fx_url type="string" length="255"></fx_url>
+			<!-- absolute or relative URL to load the calendar's interact function -->
+			<interact_url type="string" length="255"></interact_url>
+			<!-- whether or not the group filter (and multiple group support) is enabled -->
+			<group_filter_enabled type="bool">true</group_filter_enabled>
+			<!-- 0 => automatically shows all events, a greater value hides non-matching events -->
+			<group_filter_mode type="integer">0</group_filter_mode>
+			<!-- color/display settings -->
+			<week_heading_foreground_color type="string" length="100">#000</week_heading_foreground_color>
+			<week_heading_background_color type="string" length="100">#dddddd</week_heading_background_color>
+			<weekday_foreground_color type="string" length="100">#000</weekday_foreground_color>
+			<weekday_background_color type="string" length="100">#fff</weekday_background_color>
+			<weekday_border_color type="string" length="100">#000</weekday_border_color>
+			<weekday_border_style type="string" length="100">dropshadow</weekday_border_style>
+			<weekday_date_position type="string" length="100">top-right</weekday_date_position>
+			<today_foreground_color type="string" length="100">#000</today_foreground_color>
+			<today_background_color type="string" length="100">rgb(255,234,234)</today_background_color>
+			<today_border_color type="string" length="100">rgb(230,0,0),rgb(204,0,0)</today_border_color>
+			<!-- valid month_nav_type values are: 'mNsimple', 'mNdeuce', 'mNfullyearTop', 'mNfullyearBottom' -->
+			<month_nav_type type="string" length="20">mNfullyearTop</month_nav_type>
+			<!-- valid one_week_mode values are: 'startToday', 'startSunday' -->
+			<one_week_mode type="string" length="15">startToday</one_week_mode>		
+		</calendar_settings>
+		<calendar_groups>
+			<!-- group id -->
+			<id type="integer" unsigned="true" primary="true" unique="true" autoinc="true"></id>
+			<!-- site id from the calendar_settings table -->
+			<site_id type="integer" unsigned="true" notnull="true"></site_id>
+			<!-- group name -->
+			<name type="string" length="40" notnull="true"></name>
+			<!-- description (may contain html) -->
+			<description type="string" length="255"></description>
+			<!-- group url (optional link to group home page -->
+			<url type="string" length="255"></url>
+		</calendar_groups>
+		<calendar_locations>
+			<!-- location id -->
+			<id type="integer" unsigned="true" primary="true" unique="true" autoinc="true"></id>
+			<!-- site id from the calendar_settings table -->
+			<site_id type="integer" unsigned="true" notnull="true"></site_id>
+			<!-- location name -->
+			<name type="string" length="80" notnull="true"></name>
+			<!-- address -->
+			<address type="string" length="100"></address>
+			<city type="string" length="50"></city>
+			<state type="string" length="2"></state>
+			<zip type="string" length="10"></zip>
+			<!-- optional url to map (e.g. google maps) -->
+			<map_url type="string" length="255"></map_url>
+			<!-- location contact phone number -->
+			<phone type="string" length="25"></phone>
+		</calendar_locations>
+		<calendar_events>
+			<!-- event id -->
+			<id type="integer" unsigned="true" primary="true" unique="true" autoinc="true"></id>
+			<!-- site id from the calendar_settings table -->
+			<site_id type="integer" unsigned="true" notnull="true"></site_id>
+			<!-- yyyymm value -->
+			<month type="string" notnull="true" length="6"></month>
+			<!-- the day of the month this event occurs on -->
+			<day type="integer" length="2" notnull="true"></day>
+			<!-- start time for this event (24/hour format) (hh:mm) -->
+			<start_time type="string" length="5"></start_time>
+			<!-- end time for this event (24/hour format) (hh:mm) -->
+			<end_time type="string" length="5"></end_time>
+			<!-- caption/title/brief for this event -->
+			<caption type="string" length="128" notnull="true"></caption>
+			<!-- long description (html) of this event OR link destination if description_is_url == true -->
+			<description type="string" length="255"></description>
+			<!-- related url -->
+			<url type="string" length="255"></url>
+			<!-- optional location id for this event (0 = none) -->
+			<location_id type="integer" unsigned="true" notnull="true">0</location_id>
+			<!-- optional group id for this event (0 = none) -->
+			<group_id type="integer" unsigned="true" notnull="true">0</group_id>
+			<!-- who created this event -->
+			<post_user type="string" length="255"></post_user>
+			<!-- datetime this was created -->
+			<post_date type="datetime" notnull="true"></post_date>
+		</calendar_events>
+		<calendar_recurring_events>
+			<!-- recurring event id -->
+			<id type="integer" unsigned="true" primary="true" autoinc="true" />
+			<!-- site id from the calendar_settings table -->
+			<site_id type="integer" unsigned="true" notnull="true" />
+			<!-- the type of recurrance pattern this follows (daily, weekly, monthly, yearly) -->
+			<type type="string" length="7" notnull="true" />
+			<!-- the recurrance pattern details -->
+			<pattern type="string" length="255" notnull="true" />
+			<!-- the recurrance start date -->
+			<start_date type="datetime" notnull="true" />
+			<!-- the recurrance end date -->
+			<end_date type="datetime" />
+			<!-- comma seperated list of dates that are to be excluded from the range -->
+			<exceptions type="string" length="255" />
+			<!-- start time for this event (24/hour format) (hh:mm) -->
+			<start_time type="string" length="5" />
+			<!-- end time for this event (24/hour format) (hh:mm) -->
+			<end_time type="string" length="5" />
+			<!-- caption/title/brief for this event -->
+			<caption type="string" length="128" notnull="true" />
+			<!-- long description (html) of this event OR link destination if description_is_url == true -->
+			<description type="string" length="255" />
+			<!-- related url -->
+			<url type="string" length="255"></url>
+			<!-- optional location id for this event (0 = none) -->
+			<location_id type="integer" unsigned="true" notnull="true">0</location_id>
+			<!-- optional group id for this event (0 = none) -->
+			<group_id type="integer" unsigned="true" notnull="true">0</group_id>
+			<!-- who created this event -->
+			<post_user type="string" length="255" />
+			<!-- datetime this was created -->
+			<post_date type="datetime" notnull="true" />
+		</calendar_recurring_events>
+	</schema>
+	<data>
+		
+		<calendar_settings>
+			<r:1>
+				<id>0</id>
+				<css_url</css_url>
+				<js_url></js_url>
+				<fx_url></fx_url>
+				<interact_url></interact_url>
+				<group_filter_enabled type="bool">false</group_filter_enabled>
+			</r:1>
+		</calendar_settings>
+		
+		<security_permission>
+			<record><item>calendar</item><guid>PUBLIC</guid></record>
+			<record><item>calendar.index</item><guid>PUBLIC</guid></record>
+		</security_permission>
+		
+		<files_index>
+			<file>
+				<unique_id>calendar_week_gradient.png</unique_id>
+				<type>server</type>
+				<name>calendar_week_gradient.png</name>
+				<server_path>images/</server_path>
+				<object>calendar_v2</object>
+				<shared type="bool">true</shared>
+				<mime>image/png</mime>
+			</file>
+			<file>
+				<unique_id>calendar.css</unique_id>
+				<type>server</type>
+				<name>calendar.css</name>
+				<server_path>css/</server_path>
+				<object>calendar_v2</object>
+				<shared type="bool">true</shared>
+				<mime>text/css</mime>
+			</file>
+			<file>
+				<unique_id>calendar2_demo.png</unique_id>
+				<type>server</type>
+				<name>calendar2_demo.png</name>
+				<server_path>images/</server_path>
+				<object>calendar_v2</object>
+				<shared type="bool">true</shared>
+				<mime>image/png</mime>
+			</file>
+			<file>
+				<unique_id>calendar2a2.js</unique_id>
+				<type>server</type>
+				<name>calendar2a2.js</name>
+				<server_path>javascript/</server_path>
+				<object>calendar_v2</object>
+				<shared type="bool">true</shared>
+				<mime>text/javascript</mime>
+			</file>
+			<file>
+				<unique_id>calendar_popup.js</unique_id>
+				<type>server</type>
+				<name>calendar_popup.js</name>
+				<server_path>javascript/</server_path>
+				<object>calendar_v2</object>
+				<shared type="bool">true</shared>
+				<mime>text/javascript</mime>
+			</file>
+			<file>
+				<unique_id>calendar.compat.js</unique_id>
+				<type>server</type>
+				<name>calendar.compat.js</name>
+				<server_path>javascript/</server_path>
+				<object>calendar_v2</object>
+				<shared type="bool">true</shared>
+				<mime>text/javascript</mime>
+			</file>
+			<file>
+				<unique_id>calendar-icon.gif</unique_id>
+				<type>server</type>
+				<name>calendar-icon.gif</name>
+				<server_path>images/</server_path>
+				<object>calendar_v2</object>
+				<shared type="bool">true</shared>
+				<mime>image/gif</mime>
+			</file>
+			<file>
+				<unique_id>calendar.png</unique_id>
+				<type>server</type>
+				<name>calendar.png</name>
+				<server_path>images/</server_path>
+				<object>calendar_v2</object>
+				<shared type="bool">true</shared>
+				<mime>image/png</mime>
+			</file>
+			<file>
+				<unique_id>calendar-hilite.gif</unique_id>
+				<type>server</type>
+				<name>calendar-hilite.gif</name>
+				<server_path>images/</server_path>
+				<object>calendar_v2</object>
+				<shared type="bool">true</shared>
+				<mime>image/gif</mime>
+			</file>
+			<file>
+				<unique_id>calendar-next.gif</unique_id>
+				<type>server</type>
+				<name>calendar-next.gif</name>
+				<server_path>images/</server_path>
+				<object>calendar_v2</object>
+				<shared type="bool">true</shared>
+				<mime>image/gif</mime>
+			</file>
+			<file>
+				<unique_id>calendar-prev.gif</unique_id>
+				<type>server</type>
+				<name>calendar-prev.gif</name>
+				<server_path>images/</server_path>
+				<object>calendar_v2</object>
+				<shared type="bool">true</shared>
+				<mime>image/gif</mime>
+			</file>
+			<file>
+				<unique_id>calendar-td.gif</unique_id>
+				<type>server</type>
+				<name>calendar-td.gif</name>
+				<server_path>images/</server_path>
+				<object>calendar_v2</object>
+				<shared type="bool">true</shared>
+				<mime>image/gif</mime>
+			</file>
+			<file>
+				<unique_id>calendar-valid.gif</unique_id>
+				<type>server</type>
+				<name>calendar-valid.gif</name>
+				<server_path>images/</server_path>
+				<object>calendar_v2</object>
+				<shared type="bool">true</shared>
+				<mime>image/gif</mime>
+			</file>
+		</files_index>
+		
+	</data>
+</cms-extension>

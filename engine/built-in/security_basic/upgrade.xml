@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<db_alter>
+
+	<security_basic:0.1.0 next="0.1.1">
+		<insert>
+			<security_permissions>
+				<record><item>security.xml_user_set_password</item><client>admin</client></record>
+			</security_permissions>
+		</insert>
+	</security_basic:0.1.0>
+	
+	<security_basic:0.1.1 next="0.1.2">
+		<insert>
+			<files_index>
+				<file>
+					<unique_id>security.js</unique_id>
+					<type>sscript</type>
+					<name>security.js</name>
+					<description>security manager javascript</description>
+					<server_path>javascript/</server_path>
+					<object>security_basic</object>
+					<shared type="bool">true</shared>
+					<mime>text/javascript</mime>
+				</file>
+			</files_index>
+		</insert>
+	</security_basic:0.1.1>
+	
+	<security_basic:0.1.2 next="0.1.3">
+		<create>
+			<security_group_member charset="latin1">
+				<group_guid type="string" length="55" primary="true"></group_guid>
+				<user_guid type="string" length="55" primary="true"></user_guid>
+			</security_group_member>
+		</create>
+	</security_basic:0.1.2>
+	
+	<security_basic:0.1.3 next="0.1.4">
+		<security_group_member>
+			<change><user_guid rename="member_guid" type="string" length="55" primary="true"></user_guid></change>
+			<add><member_is_group after="member_guid" type="bool" notnull="true">false</member_is_group></add>
+		</security_group_member>
+	</security_basic:0.1.3>
+	
+	<security_basic:0.1.4 next="0.1.5">
+		<update>
+			<security_users>
+				<match><uid>admin</uid></match>
+				<set><unique_id>61123ca4-f075-11df-bff3-aa46601030c1</unique_id></set>
+			</security_users>
+		</update>
+		<security_groups>
+			<modify><unique_id type="string" length="55" notnull="true" /></modify>
+			<rename to="security_group" />
+		</security_groups>
+		<security_users>
+			<modify><unique_id type="string" length="55" notnull="true" /></modify>
+			<rename to="security_user" />
+		</security_users>
+		<security_permissions>
+			<change><client type="string" length="55" primary="true" rename="guid" /></change>
+			<rename to="security_permission" />
+		</security_permissions>
+		<update>
+			<security_permission>
+				<match><guid>admin</guid></match>
+				<set><guid>61123ca4-f075-11df-bff3-aa46601030c1</guid></set>
+			</security_permission>
+		</update>
+		<create>
+			<security_guid charset="latin1">
+				<guid type="string" length="55" primary="true" />
+				<type type="string" length="5" notnull="true" />
+			</security_guid>
+		</create>
+		<insert>
+			<security_guid>
+				<record>
+					<guid>61123ca4-f075-11df-bff3-aa46601030c1</guid>
+					<type>user</type>
+				</record>
+			</security_guid>
+		</insert>
+	</security_basic:0.1.4>
+	
+	<security_basic:0.1.5 next="0.2.0">
+		<create>
+			<security_session charset="latin1">
+				<session_id type="string" length="128" primary="true" />
+				<session_data type="clob" length="65535"  notnull="true" />
+				<expires type="integer" notnull="true">0</expires>
+			</security_session>
+		</create>
+	</security_basic:0.1.5>
+	
+	<security_basic:0.2.0 next="0.2.9">
+	
+		<security_guid>
+			<add><accounts_guid after="type" type="string" length="255" notnull="true" /></add>
+			<add><module_id after="accounts_guid" type="integer" unsigned="true" /></add>
+		</security_guid>
+		
+		<security_role>
+			<drop><unique_id /></drop>
+		</security_role>
+		
+		<create>
+			<security_module charset="latin1">
+				<id type="integer" unsigned="true" primary="true" autoinc="true" />
+				<name type="string" length="50" notnull="true" />
+			</security_module>
+		</create>
+		
+		<create>
+			<security_role_member charset="latin1">
+				<role_id type="integer" unsigned="true" primary="true" />
+				<guid type="string" length="55" primary="true" />
+			</security_role_member>
+		</create>
+		
+	</security_basic:0.2.0>
+	
+	<security_basic:0.2.9 next="0.2.9.1">
+		<security_module>
+			<add><uuid after="name" type="string" length="255" notnull="true" /></add>
+			<add><order after="uuid" type="integer" notnull="true">0</order></add>
+		</security_module>
+	</security_basic:0.2.9>
+	
+	<security_basic:0.2.9.1 next="0.2.9.2">
+		<security_module>
+			<add><authentication after="order" type="bool" notnull="true">true</authentication></add>
+		</security_module>
+	</security_basic:0.2.9.1>
+	
+	<security_basic:0.2.9.2 next="0.2.9.3">
+		<security_module>
+			<add><enabled after="uuid" type="bool" notnull="true">true</enabled></add>
+			<add><instance_name after="authentication" type="string" length="50" /></add>
+			<add><instance_alias after="instance_name" type="string" length="20" /></add>
+			<add><instance_description after="instance_alias" type="string" length="255" /></add>
+			<add><instance_of after="instance_description" type="string" length="255" /></add>
+			<add><instance_settings after="instance_of" type="clob" length="65535" /></add>
+		</security_module>
+	</security_basic:0.2.9.2>
+	
+	<security_basic:0.2.9.3 next="0.2.9.4">
+		<security_role>
+			<change><name type="string" length="50" notnull="true" unique="true" /></change>
+		</security_role>
+	</security_basic:0.2.9.3>
+	
+	<security_basic:0.2.9.4 next="0.2.9.5">
+		<security_guid><change><guid type="string" length="60" /></change></security_guid>
+		<security_permission><change><guid type="string" length="60" /></change></security_permission>
+		<security_role_member><change><guid type="string" length="60" /></change></security_role_member>
+	</security_basic:0.2.9.4>
+	
+	<security_basic:0.2.9.5 next="0.2.10">
+		<security_module>
+			<add><auth_standard after="authentication" type="bool" notnull="true">true</auth_standard></add>
+		</security_module>
+	</security_basic:0.2.9.5>
+	
+	<security_basic:0.2.10 next="0.2.10.1">
+		<insert>
+			<files_index>
+				<file>
+					<unique_id>security.css</unique_id>
+					<type>server</type>
+					<name>security.css</name>
+					<description>security manager styles</description>
+					<server_path>css/</server_path>
+					<object>security_basic</object>
+					<shared type="bool">true</shared>
+					<mime>text/css</mime>
+				</file>
+			</files_index>
+		</insert>
+	</security_basic:0.2.10>
+	
+	<security_basic:0.2.10.1 next="0.2.10.2">
+		<insert>
+			<files_index>
+				<file>
+					<unique_id>login_manager.png</unique_id>
+					<type>server</type>
+					<name>login_manager.png</name>
+					<description>login_manager image</description>
+					<server_path>images/</server_path>
+					<object>security_basic</object>
+					<shared type="bool">true</shared>
+					<mime>image/png</mime>
+				</file>
+			</files_index>
+		</insert>
+	</security_basic:0.2.10.1>
+	
+	<security_basic:0.2.10.2 next="0.2.10.3">
+		<change><security_guid><accounts_guid type="tinyblob" length="255" notnull="true" /></security_guid></change>
+	</security_basic:0.2.10.2>
+	
+</db_alter>

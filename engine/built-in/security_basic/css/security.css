@@ -1,0 +1,40 @@
+/* CSS Document */
+
+ul.security_auth_list
+{
+	border: 1px solid #ccc;
+	height: 165px;
+	list-style-type: none;
+	margin: 10px 0;
+	position: relative;
+}
+
+ul.security_auth_list li
+{
+	display: block;
+	float: right;
+	height: 100%;
+	text-align: center;
+	vertical-align: bottom;
+	width: 175px;
+}
+
+ul.security_auth_list li a
+{
+	display: block;
+	height: 155px;
+	margin: 5px;
+	text-decoration: none;
+}
+
+ul.security_auth_list li a:hover
+{
+	background-color: #eee;
+	border: 2px groove #ccc;
+	margin-top: 3px;
+}
+
+ul.security_auth_list li img
+{
+	border: none;
+}

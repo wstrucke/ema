@@ -1,0 +1,831 @@
+/* CSS Document */
+
+/**********************************************************
+	Style Sheet for Calendar Class
+	William Strucke, [wstrucke@gmail.com]
+	Version 1.0, 2006.04.25
+	********************************************************/
+
+
+/**************************************
+ *	Reduce global calendar font sizes
+ *
+ */
+
+	form.calendarForm, ul.calendar2, div.calendar2, div.calendarMgmtMenu
+	{
+		font-size: 13px;
+		font-family: Arial, Helvetica, sans-serif;
+	}
+	
+
+/**************************************
+ *	All Calendar Forms, global
+ *
+ */
+ 
+	form.calendarForm
+	{
+		position: relative;
+		width: 700px;
+		margin: 20px auto;
+		padding: 10px 10px 20px;
+		border: 1px dotted #cccccc;
+		color: #000;
+		background-color: #f6f6f6;
+		font-family: Verdana, Arial, Helvetica, sans-serif;
+		/*font-size: 1em;*/
+	}
+	* html form.calendarForm { /* ie fix - enable font scaling */ font-size: 100%; }
+	
+	form.calendarForm h1
+	{
+		clear: both;
+		margin-bottom: 5px;
+		padding-top: 10px;
+		border-top: 1px solid #000;
+		border-bottom: none;
+		font-size: 1em;
+		color: #cc0000;
+		background-color: inherit;
+	}
+	
+	form.calendarForm div.heading
+	{
+		/* Form Heading/Title */
+		width: 100%;
+		margin-bottom: 5px;
+		text-align: center;
+		font-size: 1.2em;
+		font-weight: bold;
+	}
+	
+	form.calendarForm a#submit
+	{
+		/* Submit Link */
+		position: absolute;
+		top: 1em;
+		right: 10px;
+		padding: 2px 10px;
+		border: 1px solid #cccccc;
+		color: #000;
+		background-color: #fff;
+		text-decoration: none;
+		cursor: pointer;
+	}
+	
+	form.calendarForm a#submit:hover { /* Submit Link, Mouse-over */ border: 1px solid #000; }
+	
+/**************************************
+ *	One Column Layout
+ *
+ */
+	
+	form.calendarForm div.row
+	{
+		/* a 'row' of information, content container */
+		position: relative;
+		float: right;
+		clear: both;
+		width: 500px;
+		margin-bottom: 10px;
+		font-size: 0.89em;
+	}
+	
+	form.calendarForm div.row span
+	{
+		/* the left side, or title, for the row */
+		float: left;
+		width: 170px;
+		margin-left: -180px;
+		padding-top: 2px;
+		white-space: nowrap;
+		overflow: hidden;
+	}
+	
+	form.calendarForm input, form.calendarForm select, form.calendarForm textarea
+	{
+		/* input box for this row of data */
+		width: 100px;
+		height: 1.5em;
+		padding: 2px 4px;
+		border: 1px solid #cccccc;
+		color: #000;
+		background-color: #fff;
+		font-size: 0.89em;
+	}
+	
+	form.calendarForm .superSmall { /* very small input box */ width: 20px; }
+	form.calendarForm .small { /* small input box */ width: 70px; }
+	form.calendarForm .medium { /* medium input box */ width: 200px; }
+	form.calendarForm .long { /* large input box */ width: 350px; }
+	form.calendarForm input.check { /* check box */ width: 15px; margin: 0px 5px; }
+	form.calendarForm input.radio { /* radio button */ width: 12px; padding: 0px; margin-right: 5px; margin-bottom: -4px; }
+	form.calendarForm select { /* Select Input Box */	width: 8em;	height: 2em; margin: 0px; padding-right: 1px;	}
+	form.calendarForm textarea { /* Large Text Area */ width: 485px; height: 6em; font-size: 1.2em; }
+	form.calendarForm hr { /* horizontal rule */ clear: both; width: 100%; border-top: 1px dotted #cccccc; }
+	
+	form.calendarForm div#time { /* start,end times container */ clear: both; overflow: hidden; }
+	form.calendarForm div#recurring { /* recurring events container */ clear: both; overflow: hidden; }
+	form.calendarForm hr { margin: 2px 0 10px; }
+	
+
+/**************************************
+ *	Two Column Layout
+ *
+ */
+	
+	form.calendarForm div.split_row_left, form.calendarForm div.split_row_right
+	{
+		/* both sides in a two column layout */
+		position: relative;
+		width: 330px; /* width is < (form width/2) - padding */
+		margin-left: 20px;
+		margin-bottom: 10px;
+		font-size: 0.89em;
+	}
+	
+	form.calendarForm div.split_row_left
+	{
+		/* left side in a two column layout */
+		float: left;
+		clear: both;
+		width: 300px; /* override default width */
+	}
+	
+	form.calendarForm div.split_row_right
+	{
+		/* right side in a two column layout */
+		float: right;
+		clear: right;
+		width: 360px; /* override default width */
+	}
+	
+	form.calendarForm span.footerInfo
+	{
+		/* small info box, bottom right corner */
+		position: absolute;
+		bottom: 0px;
+		right: 0px;
+		padding: 10px;
+		font-size: 0.89em;
+		color: #006633;
+		background-color: inherit;
+	}
+
+
+/**************************************
+ *	Special Recurring Appt. Containers
+ *
+ */
+
+	form.calendarForm div#recurringDayContainer { display: block; }
+	form.calendarForm div#recurringWeekContainer { display: none; }
+	form.calendarForm div#recurringMonthContainer { display: none; }
+	form.calendarForm div#recurringYearContainer { display: none; }
+		
+	
+/**************************************
+ *	Admin/Management Interface
+ *
+ */
+		
+	form#calendarMgmt div.row div.example
+	{
+		/* example box for display settings */
+		position: absolute;
+		top: 7px;
+		right: 0px;
+		width: 100px;
+		padding: 5px 10px;
+		border: 1px solid #cccccc;
+		color: #000;
+		background-color: #fff;
+	}
+	
+	form#calendarAddEvent div#pop_calendar
+	{
+		/* Javascript popup calendar */
+		position: absolute;
+		margin-top: -260px;
+		margin-left: -8px;
+		visibility: hidden; 
+		background-color: white;
+	/*layer-background-color: white;*/
+		z-index: 100;
+	}
+	
+/**************************************
+ *	Calendar
+ *
+ */
+ 
+	ul.calendar2
+	{
+		/* Calendar Container */
+		position: relative;
+		clear: left;
+		list-style: none;
+		color: #000;
+		background-color: transparent;
+		border: none;
+		padding: 0px;
+		font-weight: normal;
+	}
+	
+	ul.month { /* month view */ height: 100%; }
+	ul.week { /* week view */ width: 100%; }
+	ul.compact 
+	{ 
+		/* compact view */ 
+		width: 203px; 
+		padding: 2px; 
+		color: #000;
+		background-color: #eeeeee;
+		border: 1px solid #000; 
+	}
+	
+	ul.calendar2 li.head
+	{
+		/* common header styles */
+		position: absolute; 
+		padding: 0px 5px 0px 10px;
+		font-weight: bold;
+	}
+	
+	ul.month li.head
+	{
+		/* month view header */
+		top: 45px;
+		right: 0px;
+		font-size: 3.5em;
+	}
+	* html ul.month li.head {	/* ie fix */ bottom: auto; top: 50px;	}
+	
+	ul.week li.head
+	{
+		/* week view header */
+		top: 28px;
+		left: 0px;
+		color: #000;
+		background-color: #ffffff;
+		font-size: 1.1em;
+		padding-left: 4px;
+		/* Opacity Settings (IE, Mozilla, Safari) */
+		/*filter: alpha (opacity=9);*/
+		opacity: .9;
+		-khtml-opacity: .9;
+	}
+	* html ul.week li.head { /* ie fix */ top: 34px; }
+	
+	ul.compact li.head 
+	{ 
+		/* compact view: header */ 
+		position: relative; 
+		margin-bottom: 1px;
+		padding: 2px 0px; 
+		border: 1px solid #cccccc;
+		color: #fff;
+		background-color: #cc3333;
+		text-align: center; 
+	}
+
+	ul.calendar2 li.groupFilter
+	{
+		/* group filter select box */
+		position: absolute;
+		top: 0px;
+		right: 0px;
+		}
+	* html ul.calendar2 li.groupFilter { /* ie fix */ top: 5px; }
+	
+	ul.calendar2 li.groupFilter select { /* filter select box */ width: 105px; font-size: 0.89em; }
+	
+	ul.month li.image { /* image container */ height: 100px; }
+	
+	ul.calendar2 li.image img { /* header image */ margin: 0px; }
+	
+	ul.calendar2 li.calNavigation { /* all month to month nav link containers */ }
+	
+	ul.calendar2 li.calNavigation a
+	{
+		/* all month nav links */
+		color: #000; 
+		text-decoration: none; 
+		font-weight: bold;
+	}
+	ul.calendar2 li.calNavigation a:hover { /* all month nav links on mouse-over */ text-decoration: underline; }
+	
+	ul.calendar2 li.calNavigation span { /* current month name in nav list */ color: #cc0000; background-color: inherit; font-weight: bold; }
+	
+	ul.calendar2 li.mNsimple, ul.calendar2 li.mNdeuce { /* month fw/bk navigation */ position: absolute; top: 28px; right: 0px; padding: 1px 5px; }
+		
+	ul.calendar2 li.mNfullyearTop
+	{ 
+		/* full yr navigation, top */ 
+		margin: 0px;
+		border-top: 1px solid #cccccc;
+	}
+	
+	ul.calendar2 li.mNfullyearTop a, ul.calendar2 li.mNfullyearBottom a, ul.calendar2 li.calNavigation span { margin: 0px .8em; }
+	
+	ul.calendar2 li.mNfullyearTop, ul.calendar2 li.mNfullyearBottom 
+	{ 
+		/* both full year displays (top and bottom) */
+		float: left; 
+		clear: left; 
+		width: 100%; 
+		padding: 10px 0px; 
+		white-space: nowrap;
+		overflow: hidden;
+		text-align: center;
+		font-size: 0.89em;
+	}
+	
+	ul.calendar2 li.hidden { /* hidden nav list */ display: none; }
+	
+	ul.calendar2 li.dayHeader
+	{
+		/* column header */
+		float: left;
+		margin: 3px 2px 1px 0px;
+		padding: 1px 2px;
+		overflow: hidden;
+		color: #000;
+		background-color: #dddddd;
+		border: 1px solid #000;
+		text-align: center;
+		font-size: 0.89em;
+	}
+		
+	ul.calendar2 li.day
+	{
+		/* week, month day on the calendar */
+		position: relative;
+		float: left;
+		height: 100px;
+		margin: 1px 2px 1px 0px;
+		padding: 1px 4px 1px 0px;
+		border: 1px solid #000;
+		overflow: hidden;
+		text-align: right;
+		color: #000;
+		background-color: #fff;
+		cursor: pointer;
+	}
+	
+	ul.month li.dayHeader, ul.month li.day { /* month view calendar day */ width: 13%;	border-right: 2px solid #000; border-bottom: 2px solid #000; }
+	ul.week li.dayHeader, ul.week li.day { /* week view calendar day */	width: 12.5%;	}
+	
+	ul.compact li.dayHeader, ul.compact li.day 
+	{ 
+		/* compact view calendar day */ 
+		width: 23px; 
+		height: 15px; 
+		margin: 1px; 
+		padding: 1px; 
+		text-align: center; 
+		font-size: 0.89em; 
+	}
+	
+	ul.calendar2 li.day p
+	{
+		/* calender entry in a day */
+		margin: 0px -3px 0px 5px;
+		font-size: .89em;
+		line-height: 1.2em;
+		text-indent: 0px;
+		text-align: center;
+		cursor: pointer;
+	}
+	
+	ul.calendar2 li.day a
+	{
+		/* calender entry link in a day */
+		white-space: normal;
+		color: #000; 
+		background-color: #ffffff;
+		text-decoration: none;
+	}
+		
+	ul.calendar2 li.day a:hover { /* calendar link hover */ color: #cc0000; }
+	
+	ul.month li.off, ul.compact li.off
+	{ 
+		/* calendar day in non-current month */ 
+		color: #999999; 
+		background-color: #fff; 
+	}
+	
+	ul.month li.off span.offMonth
+	{
+		/* month name insert for a different month (than current) */
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		padding: 2px 5px;
+		font-style: italic;
+		font-size: 1.1em;
+	}
+	
+	ul.week li.off span.offMonth { /* month name insert in week view */ display: none; }
+		
+	ul.month li.today
+	{
+		/* the current date */
+		border-top: 1px solid rgb(230,0,0);
+		border-left: 1px solid rgb(230,0,0);
+		border-right: 2px solid rgb(204,0,0);
+		border-bottom: 2px solid rgb(204,0,0);
+		color: rgb(0,0,0);
+		background-color: rgb(255,234,234);
+		font-weight: bold;
+	}
+	
+	ul.month li.today a { color: inherit; background-color: inherit; }
+	
+	ul.compact li.today { /* the current date */ color: rgb(0,0,0); background-color: rgb(255,234,234); }
+	
+	ul.compact li.selected { /* the selected date */ border: 2px solid #000; margin: 0px; }
+	
+	ul.compact li.clear { /* clear the calendar to extend the outside border */ clear:left; height:0px; }
+	* html ul.compact li.clear { /* ie fix */ display: none; }
+	
+	
+/**************************************
+ *	Calendar Day View
+ *
+ */
+ 
+	div.calendar2, div.calendarMessage
+	{
+		/* day view container */
+		position: relative;
+		clear: none;
+		width: 500px;
+		margin: 0px auto 20px;
+		border: 1px solid #cccccc;
+		color: #000;
+		background-color: #f3f3f3;
+	}
+	
+	div.calendar2 h1, div.calendarMessage p
+	{
+		/* entry heading */
+		margin: .2em;
+		padding: .1em .3em;
+		border: 1px solid #aaaaaa;
+		color: #333333;
+		background-color: rgb(234,244,255);
+		font-size: 1.2em;
+	}
+	
+	div.calendar2 h2
+	{
+		/* entry sub heading */
+		text-align: left;
+		text-decoration: none;
+		border-bottom: 1px solid #000;
+		margin: 5px 0px;
+		padding-bottom: 0px;
+		font-family: Arial, Helvetica, sans-serif;		
+		font-size: 1em;
+		font-weight: normal;
+		line-height: 1.2em;
+	}
+	
+	div.calendar2 sup
+	{
+		/* superscript text */
+		font-size: 0.6em;
+	}
+	
+	div.calendar2 div.dayNavigation
+	{
+		height: 1.4em;
+		margin: 0px .2em .2em;
+		padding: 2px 5px;
+		border: 1px dotted #bbbbbb;
+		color: #000;
+		background-color: #fcfcfc;
+		font-size: 0.89em;
+		text-align: center;
+	}
+	div.calendar2 div.dayNavigation a { text-decoration: none; margin: 0px 10px; }
+	div.calendar2 div.dayNavigation a:hover { text-decoration: underline; }
+	div.calendar2 div.dayNavigation a.left { float: left; margin: 0px; }
+	div.calendar2 div.dayNavigation a.right { float: right; margin: 0px; }
+	
+	div.calendar2 ul
+	{
+		/* event list */
+		height: 100%;
+		margin: 0px .2em .2em;
+		color: #000;
+		background-color: #fcfcfc;
+		border: 1px dotted #bbbbbb;
+		line-height: 1.8em;
+		list-style-type: none;
+	}
+	
+	div.calendar2 li
+	{
+		/* event item */
+		position: relative;
+		margin: 0px 5px 5px 10px;
+	}
+	
+	div.calendar2 li span.details
+	{
+		/* date/time/location */
+		display: block;
+		font-size: 0.89em;
+		line-height: 0.89em;
+		color: #333333;
+		margin: 5px 0px;
+	}
+	
+	div.calendar2 li span.details a
+	{
+		/* edit/delete links */
+		float: right;
+		clear: none;
+		margin-left: 10px;
+	}
+	
+	div.calendar2 li span.description
+	{
+		/* event description or link */
+		display: block;
+		margin-left: 20px;
+		font-size: 0.89em;
+	}
+	
+	div.calendar2 li span.group
+	{
+		/* event group marker */
+		position: absolute;
+		top: 0px;
+		right: 0px;
+		color: #cc0000;
+		background-color: inherit;
+		font-size: 0.89em;
+		line-height: 1.2em;
+	}
+	
+	div.calendar2 li span.none
+	{
+		/* hide this span */
+		display: none;
+	}
+	
+	div.calendar2 li span.editLink
+	{
+		/* management/edit link */
+		position: absolute;
+		top: 1.6em;
+		right: 0px;
+		font-size: 0.89em;
+		line-height: 1.2em;
+	}
+	
+	div.calendar2 li span.editLink a { /* link style */ text-decoration: none; }
+	div.calendar2 li span.editLink a:hover { text-decoration: underline; }
+	
+	div.calendar2 a#monthLink
+	{
+		/* link to show month */
+		position: absolute;
+		top: .5em;
+		right: .6em;
+		padding: .1em .2em;
+		border: 1px solid #cccccc;
+		color: #000;
+		background-color: #f9f9f9;
+		font-size: 0.89em;
+		text-decoration: none;
+	}
+	
+	div.calendar2 a#monthLink:hover
+	{
+		/* link */
+		color: #000;
+		background-color: #ffffff;
+	}
+	
+	
+/**************************************
+ *	Calendar Management Menu
+ *
+ */
+ 
+	div.calendarMgmtMenu
+	{
+		/* management menu container */
+		position: relative;
+		margin: 0px auto 0.5em;
+		padding: 0.2em 0px;
+		border: 1px solid #ccc;
+		color: inherit;
+		background-color: #eee;
+		/* font-size: 1.2em; */
+		text-align: center;
+	}
+	
+	div.calendarMgmtMenu a
+	{
+		/* management menu links */
+		margin: 0px 0.5em;
+		color: #cc0000;
+	}
+
+
+/**************************************
+ *	Calendar Message/Response
+ *
+ */
+
+	div.calendarMessage
+	{
+		/* container */
+		text-align: center;
+	}
+	
+	div.calendarMessage p
+	{
+		/* message text */
+		font-size: 1em;
+		text-indent: 0px;
+	}
+ 
+ 
+/**************************************
+ *	Hover Element
+ *
+ */
+	
+	div.hoverContents
+	{
+		/* javascript hovering description */
+		position: absolute;
+		top: -1000px;
+		left: -1000px;
+		white-space: nowrap;
+		margin: 0;
+		padding: 5px;
+		text-align: left;
+		font-family: Verdana, Arial, Helvetica, sans-serif;
+		font-size: 0.89em;
+		font-weight: normal;
+		border: 1px solid #dddddd;
+		color: #000;
+		background-color: #eeeeee;
+		z-index: 100;
+		/* opacity, radius settings */
+		-moz-border-radius: 5px;
+		opacity: .9;
+		/*filter: alpha(opacity=90);*/
+	}
+	
+	div.hoverContents a
+	{ 
+		/* javascript hovering desc. link */
+		font-family: Arial, Helvetica, sans-serif;
+		color: #cc3300;
+		background-color: inherit;
+		font-weight: bold;
+	}
+	
+	div.hoverContents ul { list-style-type: disc; line-height: 1.5em; }
+	div.hoverContents li { margin-left: 20px; }
+	
+	
+/**************************************
+ *	Calendar Popup
+ *
+ */
+input.calendar,
+select.calendar {
+	width: 99px;
+}
+
+	button.calendar {
+		background: url(calendar-icon.gif);
+		border: 0;
+		cursor: pointer;
+		float: right;
+		height: 20px;
+		margin-right: 6px;
+		width: 20px;
+	}
+	button.calendar:hover,
+	button.calendar.active {
+		background-position: 0 20px;
+	}
+	
+	div.calendar {
+		background: url(calendar.png);
+		height: 195px;
+		padding: 0 6px;
+		text-align: center;
+		width: 147px;
+	}
+	div.calendar * {
+		margin: 0;
+		padding: 0;
+	}	
+	div.calendar div {
+		background: none !important;
+		cursor: move;
+		height: 185px;
+		overflow: hidden;
+		padding-top: 10px;
+		position: relative;
+		width: 147px;
+	}	
+	
+	div.calendar caption {
+		color: #333;
+		font: normal 12px/16px Arial, Helvetica, sans-serif;
+		padding-top: 6px;
+		text-align: center;
+		width: 100%;
+	}
+	div.calendar caption a {
+		cursor: pointer;
+		display: block;
+		height: 12px;
+		overflow: hidden;
+		position: absolute;
+		text-indent: -100px;
+		top: 17px;
+		width: 11px;
+	}
+	div.calendar caption a.prev {
+		background-image: url(calendar-prev.gif);
+		left: 0;
+	}
+	div.calendar caption a.next {
+		background-image: url(calendar-next.gif);
+		right: 0;
+	}
+	div.calendar caption a:hover {
+		background-position: 0 12px;
+	}
+	div.calendar caption span {
+		height: 25px;
+		position: relative;
+		text-align: center;
+	}
+	div.calendar caption span.month {
+		padding-right: 8px;
+	}
+	div.calendar caption span.month:after {
+		content: ',';
+	}
+
+	div.calendar table {
+		background: #FFF;
+		border: 0;
+		border-collapse: collapse;
+		border-spacing: 0;
+		cursor: default;
+		margin: 0 auto;
+		overflow: hidden;
+		width: 147px;
+	}
+	div.calendar td,
+	div.calendar th {
+		border: 0;
+		color: #0597DB;
+		font: normal 12px Arial, Helvetica, sans-serif;
+		height: 21px;
+		text-align: center;
+		width: 21px;
+	}
+	div.calendar td {
+		background: url(calendar-td.gif);
+		color: #FFF;
+		font-size: 11px;
+	}
+	div.calendar td.invalid {
+		color: #999;
+	}
+	div.calendar td.valid {
+		background: url(calendar-valid.gif);
+		color: #0597DB;
+		cursor: pointer;
+	}
+	div.calendar td.hilite {
+		background: url(calendar-hilite.gif);
+	}
+	div.calendar td.inactive {
+		background: url(calendar-td.gif) 0 100%;
+		color: #FFF;
+	}
+	div.calendar td.active,
+	div.calendar td.hover {
+		background: url(calendar-valid.gif) 0 100%;
+		color: #FFF;
+		cursor: pointer;
+	}

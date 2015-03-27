@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<cms-extension version="1.0">
+	<title>Forms Module</title>
+	<object_name>forms_basic</object_name>
+	<version>1.0.0</version>
+	<cms_version_minimum>2.0</cms_version_minimum>
+	<cms_version_maximum/>
+	<object_file>forms_basic</object_file>
+	<author>William Strucke</author>
+	<email>wstrucke@gmail.com</email>
+	<url>http://home2.arts.ohio-state.edu/~strucke1</url>
+	<description/>
+	<requires>
+		<cms/>
+	</requires>
+	<provides>forms</provides>
+	<type>basic</type>
+	<allow_export>false</allow_export>
+	<arguments/>
+	<gears>false</gears>
+	<schema version="0.1.0">
+		
+		<form_index>
+			<id type="integer" unsigned="true" primary="true" autoinc="true" />
+			<name type="string" notnull="true" length="255" />
+			<enabled type="boolean" notnull="true">true</enabled>
+			<legacy type="boolean" notnull="true">true</legacy>
+		</form_index>
+		
+		<!-- table to store form ids for source verification -->
+		<form_verify>
+			<id type="integer" unsigned="true" primary="true" autoinc="true" />
+			<form_id type="integer" unsigned="true" notnull="true" />
+			<code type="string" notnull="true" length="30" />
+			<ipv4 type="string" notnull="true" length="15" />
+			<expires type="datetime" notnull="true" />
+		</form_verify>
+		
+	</schema>
+	
+	<data>
+		<form_index>
+			<record><name>buckeye_invitational</name></record>
+			<record><name>junior_senior_night</name></record>
+			<record><name>register_for_tryouts</name></record>
+		</form_index>
+	</data>
+	
+</cms-extension>

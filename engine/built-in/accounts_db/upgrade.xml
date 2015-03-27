@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<db_alter>
+
+	<accounts_db:0.1.0 next="0.1.1">
+		<accounts_group>
+			<modify><gid type="string" length="60" notnull="true" unique="true" /></modify>
+		</accounts_group>
+		<accounts_user>
+			<modify><uid type="string" length="60" notnull="true" unique="true" /></modify>
+		</accounts_user>
+	</accounts_db:0.1.0>
+	
+	<accounts_db:0.1.1 next="0.1.2">
+		<accounts_group>
+			<add><system after="enabled" type="bool" notnull="true">false</system></add>
+		</accounts_group>
+		<accounts_map>
+			<add><locked after="member_is_group" type="bool" notnull="true">false</locked></add>
+		</accounts_map>
+		<insert>
+			<accounts_group>
+				<record>
+					<gid>administrators</gid>
+					<unique_id>61123ca4-f075-11df-bff3-aa46601030c1</unique_id>
+					<display_name>Site Administrators</display_name>
+					<description>Built-in Administrators Group</description>
+					<system type="bool">true</system>
+				</record>
+			</accounts_group>
+			<accounts_guid>
+				<record><guid>c8cec89e-747d-11e0-8767-8576c061a515</guid><type>user</type></record>
+			</accounts_guid>
+			<accounts_map>
+				<record>
+					<group_guid>61123ca4-f075-11df-bff3-aa46601030c1</group_guid>
+					<member_guid>c8cec89e-747d-11e0-8767-8576c061a515</member_guid>
+					<locked type="bool">true</locked>
+				</record>
+			</accounts_map>
+		</insert>
+		<update>
+			<accounts_user>
+				<match><uid>admin</uid></match>
+				<set><unique_id>c8cec89e-747d-11e0-8767-8576c061a515</unique_id></set>
+			</accounts_user>
+			<accounts_guid>
+				<match><guid>61123ca4-f075-11df-bff3-aa46601030c1</guid></match>
+				<set><type>group</type></set>
+			</accounts_guid>
+		</update>
+	</accounts_db:0.1.1>
+
+</db_alter>
